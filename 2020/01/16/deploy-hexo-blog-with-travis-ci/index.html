@@ -4,7 +4,7 @@
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="utf-8">
     <meta name="keywords" content="使用Travis-CI部署hexo博客到腾讯cos&amp;github-pages, 星空无限 前端 技术笔记 个人随笔">
-    <meta name="description" content="windows企业长期服务版首先是windows，可能你会问，windows有啥好推荐的，现在大家用的不都是win10吗？ 没错，都是win10，可是不同的版本，体验也是不一样的，一般人用的都是win10专业版或家庭版，现在最新的win10">
+    <meta name="description" content="前言以前我的博客静态文件是放在一个带宽1Mbps的腾讯云主机上，文章里的图片也是放在云主机上的，当有些文章图片较多的时候，加载就会变得很慢。后来我将静态文件和图片全部迁移到腾讯对象存储(cos)里，并配置了CDN加速，从此加载速度不再是瓶颈">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="renderer" content="webkit|ie-stand|ie-comp">
@@ -415,8 +415,8 @@
                     <div class="post-cate">
                         <i class="fa fa-bookmark fa-fw icon-category"></i>
                         
-                            <a href="/categories/博客记录/" class="post-category" target="_blank">
-                                博客记录
+                            <a href="/categories/技术分享/" class="post-category" target="_blank">
+                                技术分享
                             </a>
                         
                     </div>
@@ -434,7 +434,7 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        1.1k
+                        1k
                     </div>
                     
 
@@ -452,46 +452,44 @@
         <hr class="clearfix">
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h3 id="windows企业长期服务版"><a href="#windows企业长期服务版" class="headerlink" title="windows企业长期服务版"></a>windows企业长期服务版</h3><p>首先是windows，可能你会问，windows有啥好推荐的，现在大家用的不都是win10吗？ 没错，都是win10，可是不同的版本，体验也是不一样的，一般人用的都是win10专业版或家庭版，现在最新的win10专业版安装好后，系统自带的商店会安装一些推广软件，本人对电脑有深度洁癖，这种行为是绝对不能容忍的。我这里推荐的是windows LTSB版本，LTSB就是长期支持更新分支（Long Time Service Branch），这个版本专门给一些企业用户的，相比一般版本会缺少很多新功能，例如没有应用商店、没有Edge浏览器，没有cortana，大家可以把Win10 TLSB看成是Windows10企业版的精简版本。LTSB是英语Long Term Servicing Branch的首字母缩写，汉语一般翻译成长期服务分支。LTSB分支是专门面向企业版的，Win10企业版LTSB分支支持周期长达10年，但只会获取安全更新(应该也可以获取热补丁更新)，而不获取功能更新，即不会增加任何新功能。这也是Win10企业版LTSB分支和Win10企业版最根本性的区别。 </p>
-<p>Win10企业版和LTSB分支Win10企业版的区别：</p>
+                <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>以前我的博客静态文件是放在一个带宽1Mbps的腾讯云主机上，文章里的图片也是放在云主机上的，当有些文章图片较多的时候，加载就会变得很慢。后来我将静态文件和图片全部迁移到腾讯对象存储(cos)里，并配置了CDN加速，从此加载速度不再是瓶颈，可以做到基本秒开。</p>
+<p>具体方案是将静态文件和图片文件分别放到两个存储桶里，放静态文件的存储桶CDN设置博客主域名，放图片的存储桶CDN设置二级域名，比如我设置了图片CDN二级域名为<code>images.liyangzone.com</code>,写文章的时候先上传图片到存储桶，然后在文章里就可以直接引用图片了。比如我在存储桶根目录上传了一张名为<code>test.jpg</code>的图片，它的地址就是<code>images.liyangzone.com/test.jpg</code>,而且支持多级目录，比一些图床什么的要方便很多，有些图床虽然免费，但是它的文件名一般是一个无规律的字符串，类似这种<code>https://i.loli.net/2020/01/17/Mb1fywFLrJ8khUS.png</code>,当你传了很多图片时可能会一脸懵逼，分不清哪张是什么内容了，不利于维护。</p>
+<p>而博客静态文件呢，我们可以用<code>hexo-deployer-cos</code>这个插件来替我们完成，具体配置教程可参考此文章：<a href="https://cloud.tencent.com/developer/article/1185253" target="_blank" rel="noopener">如何在腾讯云COS部署HEXO博客</a>。<br>配置完了cos各种参数后，执行<code>hexo d</code>命令就会将本地文件上传至cos了，可是这种方式需要本地安装nodejs和hexo，如果想在别的电脑上写文章就不方便了，有没有一种更加便捷的部署方式呢？答案是有的，那就是——<strong>持续集成</strong>。</p>
+<h3 id="什么是持续集成"><a href="#什么是持续集成" class="headerlink" title="什么是持续集成"></a>什么是持续集成</h3><p>持续集成（Continuous Integration）是一种软件开发实践。 在持续集成中，团队成员频繁集成他们的工作成果，一般每人每天至少集成一次，也可以多次。 每次集成会经过自动构建（包括自动测试）的检验，以尽快发现集成错误。</p>
+<h3 id="什么是Travis-CI"><a href="#什么是Travis-CI" class="headerlink" title="什么是Travis CI"></a>什么是Travis CI</h3><p>Travis CI 是目前新兴的开源持续集成构建项目，它与 jenkins，GO 的很明显的特别在于采用 yaml 格式，同时它是在线的服务，不像 jenkins 需要你本地搭建服务器，简洁清新独树一帜。目前大多数的 Github 项目都已经移入到 Travis CI 的构建队列中，据说Travis CI 每天运行超过 4000 次完整构建。对于做开源项目或者 Github 的使用者，如果你的项目还没有加入 Travis CI 构建队列，那么我真的想对你说 OUT 了。</p>
+<h3 id="为什么选择Travis-CI"><a href="#为什么选择Travis-CI" class="headerlink" title="为什么选择Travis CI"></a>为什么选择Travis CI</h3><p>为什么我们要选择 Travis 呢，因为它和 Github 集成的程度非常高，对于 Github 上的开源项目，可以免费在 Travis 上构建（为免费的互联网精神干杯🍻），而非开源的私有项目想在 Travis 上构建价格还是非常感人的。</p>
+<p>先把在 Travis 上进行自动构建的原理说一下：</p>
 <ul>
-<li>1、Win10企业版LTSB分支不会有Edge浏览器</li>
-<li>2、在系统更新方面，用户能完全手动控制更新，选择和决定自己要的更新和驱动，更新内容和更新时间可以随意控制，但不能无限期推迟。</li>
-<li>3、无Cortana</li>
-<li>4、无任何系统自带磁贴程序</li>
-<li>5、无应用商店</li>
+<li>每当我们在本地写好了博文之后，push到博客仓库的<code>blog-source</code>分支</li>
+<li>Travis上可以对这个项目的<code>blog-source</code>分支设置钩子，每当检测到 push 的时候就去仓库 clone 源代码到Travis的云服务器上。</li>
+<li>Travis云服务器按顺序执行一系列构建脚本,比如 <code>npm install</code>、<code>hexo g</code> 、<code>hexo d</code>等。</li>
 </ul>
-<p>现在最新的版本是2019 LTSC版，不过我个人还在用2016 LTSB版，从16年起到现在，期间换过几个电脑，我就在用这个版本，一直觉得这个版本是最好用最稳定的版本，工作电脑也是用的这个版本。</p>
-<p>下载链接：<a href="http://msdn.itellyou.cn/" target="_blank" rel="noopener">msdn.itellyou.cn</a>,搜索 <code>win ltsb</code> 或 <code>win ltsc</code> 下载你需要的版本。这个网站上下载的都是官方原版ISO文件，未经任何第三方修改。</p>
-<h3 id="本人常用的软件推荐"><a href="#本人常用的软件推荐" class="headerlink" title="本人常用的软件推荐"></a>本人常用的软件推荐</h3><ul>
-<li>聊天软件：<a href="https://office.qq.com/" target="_blank" rel="noopener">TIM</a> QQ企业版，没有垃圾广告</li>
-<li>浏览器：<a href="https://www.google.cn/chrome/" target="_blank" rel="noopener">chrome</a> <a href="http://www.firefox.com.cn/" target="_blank" rel="noopener">firefox</a>  Chrome主力，firefox备用</li>
-<li>输入法：<a href="https://shurufa.baidu.com/" target="_blank" rel="noopener">百度输入法</a> 虽然大家一直在骂百度，不过他的输入法还是不错的，没有广告啥的</li>
-<li>视频播放器：<a href="https://daumpotplayer.com/download/" target="_blank" rel="noopener">PotPlayer</a> 看电影我都是下到本地观看，一直在用这个播放器</li>
-<li>下载工具：μTorrent 和 迅雷去广告版 以前用过μTorrent，发现下载不动资源，其实是使用的姿势不对，设置一下tracker，速度飞起，<a href>前往设置教程(待写)</a></li>
-<li>截图软件：<a href="https://picpick.app/zh/" target="_blank" rel="noopener">PicPick</a> 不错的截图软件</li>
-<li>压缩软件 <a href="https://www.7-zip.org/" target="_blank" rel="noopener">7zip</a> 优秀的开源压缩软件，我用了七八年了</li>
-</ul>
-<h3 id="chrome浏览器插件推荐"><a href="#chrome浏览器插件推荐" class="headerlink" title="chrome浏览器插件推荐"></a>chrome浏览器插件推荐</h3><ul>
-<li>Adblock Plus 广告屏蔽插件，可屏蔽大部分网页广告，从chrome商店里安装（需要梯子)</li>
-<li><a href="https://addoncrop.com/youtube_video_downloader/" target="_blank" rel="noopener">YouTube Video Downloader</a> YouTube视频下载工具，第三方chrome插件，不在chrome商店里，本地下载安装</li>
-</ul>
-<h3 id="工作相关软件"><a href="#工作相关软件" class="headerlink" title="工作相关软件"></a>工作相关软件</h3><ul>
-<li>编辑器：WebStorm &amp; VS Code 主力WebStorm,VS Code备用</li>
-<li>图像处理：PhotoShop 2017 </li>
-<li>PhotoShop插件：AssistorPS 一款PS插件，处理一些icon时很有用</li>
-<li>PDF阅读器：Foxit Reader(福昕阅读器) 绿色小巧的PDF阅读器，功能也很强大</li>
-<li>办公软件：Office 2013 </li>
-</ul>
-<h3 id="Android-软件推荐"><a href="#Android-软件推荐" class="headerlink" title="Android 软件推荐"></a>Android 软件推荐</h3><ul>
-<li>看图软件：快图浏览 我用的是旧版本v4.5.3，无广告</li>
-<li>视频播放： MX Player Pro 功能丰富的播放器，可以手动添加字幕，设置字幕样式</li>
-<li>文件相关：Root Explorer &amp; ES文件浏览器</li>
-<li>系统相关：绿色守护 MyAndroidTools Pro 制裁一些国产软件的流氓行为</li>
-<li>电池监控：Battery Monitor Widget Pro 这个软件可以监测电池电流，还能根据充电电流计算当前电池容量</li>
-<li>骑行记录：行者 &amp; relive relive是国外软件，可生成一个炫酷的3D运动轨迹视频，国产手机安装较为麻烦，需安装google套件</li>
-<li>ROOT管理：Magisk 新版miui root管理好像只能用这个</li>
-</ul>
+<p>hexo在部署的时候可以设置多端部署,在博客配置文件里设置多个deploy即可,参考<a href="https://hexo.io/zh-cn/docs/one-command-deployment" target="_blank" rel="noopener">hexo官方文档-部署</a>，我这里只设置了两个，github-pages和cos：</p>
+<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token comment" spellcheck="true"># 下面的写法是travis-ci部署到github-pages和腾讯cos</span>
+
+<span class="token comment" spellcheck="true">#deploy:</span>
+<span class="token punctuation">-</span> <span class="token key atrule">type</span><span class="token punctuation">:</span> git
+  <span class="token key atrule">branch</span><span class="token punctuation">:</span> master
+  <span class="token key atrule">repo</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//gh_token@github.com/liyang5945/liyang5945.github.io.git
+<span class="token punctuation">-</span> <span class="token key atrule">type</span><span class="token punctuation">:</span> cos
+  <span class="token key atrule">appId</span><span class="token punctuation">:</span> cos_appId
+  <span class="token key atrule">secretId</span><span class="token punctuation">:</span> cos_secretId
+  <span class="token key atrule">secretKey</span><span class="token punctuation">:</span> cos_secretKey
+  <span class="token key atrule">bucket</span><span class="token punctuation">:</span> cos_bucket
+  <span class="token key atrule">region</span><span class="token punctuation">:</span> ap<span class="token punctuation">-</span>shanghai
+
+<span class="token comment" spellcheck="true"># 下面的写法是本地部署到github-pages和腾讯cos</span>
+
+<span class="token key atrule">deploy</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> <span class="token key atrule">type</span><span class="token punctuation">:</span> git
+    <span class="token key atrule">repo</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//github.com/liyang5945/liyang5945.github.io
+  <span class="token punctuation">-</span> <span class="token key atrule">type</span><span class="token punctuation">:</span> cos
+    <span class="token key atrule">appId</span><span class="token punctuation">:</span> ********
+    <span class="token key atrule">secretId</span><span class="token punctuation">:</span> *****************
+    <span class="token key atrule">secretKey</span><span class="token punctuation">:</span> *****************
+    <span class="token key atrule">bucket</span><span class="token punctuation">:</span> liyang<span class="token punctuation">-</span>blog<span class="token punctuation">-</span>********
+    <span class="token key atrule">region</span><span class="token punctuation">:</span> ap<span class="token punctuation">-</span>shanghai
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
             </div>
             <hr/>
@@ -812,7 +810,7 @@
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            windows企业长期服务版首先是windows，可能你会问，windows有啥好推荐的，现在大家用的不都是win10吗？ 没错，都是win10，可是不同的版本，体验也是不一样的，一般人用的都是win10专业版或家庭版，现在最新的win10
+                            前言以前我的博客静态文件是放在一个带宽1Mbps的腾讯云主机上，文章里的图片也是放在云主机上的，当有些文章图片较多的时候，加载就会变得很慢。后来我将静态文件和图片全部迁移到腾讯对象存储(cos)里，并配置了CDN加速，从此加载速度不再是瓶颈
                         
                     </div>
                     <div class="publish-info">
@@ -823,8 +821,8 @@
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/博客记录/" class="post-category" target="_blank">
-                                    博客记录
+                            <a href="/categories/技术分享/" class="post-category" target="_blank">
+                                    技术分享
                                 </a>
                             
                             
