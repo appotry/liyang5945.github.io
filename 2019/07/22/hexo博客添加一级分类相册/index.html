@@ -80,7 +80,7 @@
     </li>
     
     <li class="hide-on-med-and-down">
-        <a href="/categories" class="nav-link waves-effect waves-light">
+        <a href="/categories/" class="nav-link waves-effect waves-light">
             
             <i class="fa fa-bookmark"></i>
             
@@ -159,7 +159,7 @@
         </li>
         
         <li>
-            <a href="/categories" class="waves-effect waves-light">
+            <a href="/categories/" class="waves-effect waves-light">
                 
                 <i class="fa fa-fw fa-bookmark"></i>
                 
@@ -457,15 +457,15 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <p>最近在折腾自己的博客，在折腾的过程中也参观了许多大牛的博客，发现不少博主都有个相册页面，我也想在自己的博客上面加个相册功能。但是我现在用的这个主题呢，虽然有个相册的功能，但是我感觉有点简陋，点击照片是个弹出的轮播图，照片多了的话还要一张一张的翻。如下图：</p>
-<p><img src="https://images.liyangzone.com/article_img/%E6%B7%BB%E5%8A%A0%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/2019-07-22-01.jpg" alt></p>
+<p><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E6%B7%BB%E5%8A%A0%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/2019-07-22-01.jpg" alt></p>
 <a id="more"></a>
 
 <p>后来在网上找了不少教程，可是实现的结果大部分都是这种：</p>
-<p><img src="https://images.liyangzone.com/article_img/%E6%B7%BB%E5%8A%A0%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/%E4%B8%8D%E5%B8%A6%E5%88%86%E7%B1%BB%E7%9A%84%E7%9B%B8%E5%86%8C.jpg" alt></p>
+<p><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E6%B7%BB%E5%8A%A0%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/%E4%B8%8D%E5%B8%A6%E5%88%86%E7%B1%BB%E7%9A%84%E7%9B%B8%E5%86%8C.jpg" alt></p>
 <p>虽然有了分类的功能，但是所有照片都是在一个页面上，图片多了会影响页面加载速度，页面也会变得很长，移动端会浪费大量流量，用户体验不是很好。</p>
 <p>该博客地址：<a href="http://lawlite.me/photos/" target="_blank" rel="noopener">http://lawlite.me/photos</a></p>
 <p>而我想要的呢，是个类似<code>QQ空间</code>的相册，要有个相册目录界面，然后可以从目录页跳转至相册列表界面。 然后我翻遍了整个互联网终于找到了一个有相册分类功能的博客，该博客的相册界面是这样的：</p>
-<p><img src="https://images.liyangzone.com/article_img/%E6%B7%BB%E5%8A%A0%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/%E5%88%86%E7%B1%BB%E7%9B%B8%E5%86%8C1.jpg" alt><br><img src="https://images.liyangzone.com/article_img/%E6%B7%BB%E5%8A%A0%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/20190722-153547.jpg" alt></p>
+<p><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E6%B7%BB%E5%8A%A0%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/%E5%88%86%E7%B1%BB%E7%9B%B8%E5%86%8C1.jpg" alt><br><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E6%B7%BB%E5%8A%A0%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/20190722-153547.jpg" alt></p>
 <p>该博客地址：<a href="http://www.rayblog.cn/album/" target="_blank" rel="noopener">http://www.rayblog.cn/album</a></p>
 <p>好吧，这就是我想要的效果，而且博客下面还有教程，我研究了半天，把代码都拷到本机运行了之后，发现他这个教程也只是实现了相册的列表界面，至于目录界面是怎么弄出来的只是一笔带过。并没有实现的细节。我个人猜测他的目录界面是一个<code>album/index.md</code>文件，然后md文件里手动写的HTML代码。 </p>
 <p>虽然这种方式我也能实现，但我并不想这么做，因为我感觉在markdown文件里面写HTML和js不是很优雅，也有些繁琐，假如要添加一个相册的话还要手动修改里面的HTML代码，添加对应的链接。</p>
@@ -489,7 +489,7 @@
   <span class="token property">"url"</span><span class="token operator">:</span> <span class="token string">"ttps://me.csdn.net/jlh912008548"</span><span class="token punctuation">,</span>
   <span class="token property">"title"</span><span class="token operator">:</span> <span class="token string">"前去学习"</span>
 <span class="token punctuation">}</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>该文件包含每个友链的头像、名字、介绍、地址、标题信息，然后hexo会按照friends.ejs模板文件里的结构渲染出来列表，实现的效果就是这样的:<br><img src="https://images.liyangzone.com/article_img/%E6%B7%BB%E5%8A%A0%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/2019-07-22-02.jpg" alt></p>
+<p>该文件包含每个友链的头像、名字、介绍、地址、标题信息，然后hexo会按照friends.ejs模板文件里的结构渲染出来列表，实现的效果就是这样的:<br><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E6%B7%BB%E5%8A%A0%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/2019-07-22-02.jpg" alt></p>
 <p>就是三个a标签，里面包含头像、地址等信息，点击后跳到对应的地址。</p>
 <p>那么我们也能自定义一个相册的配置文件和模板文件，然后hexo读取这个配置文件，自动生成目录界面和列表界面，这样的话，只需要修改这个配置文件就能完成对相册的各种操作（增删改）。</p>
 <p>好吧，有了思路，就已经成功一半了，至于代码实现呢，就只是时间问题了。花了一个周末的时间我终于把它实现了。下面是具体实现过程:</p>
@@ -506,19 +506,18 @@
 <pre class="line-numbers language-js"><code class="language-js">    menuMap<span class="token punctuation">.</span><span class="token keyword">set</span><span class="token punctuation">(</span><span class="token string">"Galleries"</span><span class="token punctuation">,</span> <span class="token string">"相册"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>至于添加到什么位置，你打开文件就知道了，里面会有类似格式的代码，很容易找到的。</p>
 <p>做完以上操作后，你就会发现<code>相册</code>的菜单已经出现了：</p>
-<p><img src="https://images.liyangzone.com/article_img/%E6%B7%BB%E5%8A%A0%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/2019-07-22-03.jpg" alt></p>
+<p><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E6%B7%BB%E5%8A%A0%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/2019-07-22-03.jpg" alt></p>
 <p>点击就能跳转到<code>galleries</code>下，然而浏览器会提示你：</p>
-<p><img src="https://images.liyangzone.com/article_img/%E6%B7%BB%E5%8A%A0%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/2019-07-22-04.jpg" alt></p>
+<p><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E6%B7%BB%E5%8A%A0%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/2019-07-22-04.jpg" alt></p>
 <p>因为站点下并没有<code>galleries/index.html</code>这个文件，如何生成这个文件呢?<br>在站点根目录<code>source</code>下新建<code>galleries</code>目录，然后在该目录下新建<code>index.md</code>，就会生成<code>index.html</code>文件了，然而却是这个效果：</p>
-<p><img src="https://images.liyangzone.com/article_img/%E6%B7%BB%E5%8A%A0%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/2019-07-22-05.jpg" alt></p>
+<p><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E6%B7%BB%E5%8A%A0%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/2019-07-22-05.jpg" alt></p>
 <h4 id="2、生成相册目录和相册列表"><a href="#2、生成相册目录和相册列表" class="headerlink" title="2、生成相册目录和相册列表"></a>2、生成相册目录和相册列表</h4><p>这是为什么呢？因为hexo把这个文件当成一个普通的文章来渲染了，而我们需要自定义样式，不能让它渲染成普通的文章。要让它渲染成一个<code>layout</code>,也就是我们自定义的模板。需要以下操作：<br>在<code>index.md</code>文件里添加以下内容，注意，那几个中划线也不要少了。</p>
-<pre>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>pre</span><span class="token punctuation">></span></span>
 ---
 title: 相册
 layout: "galleries"
 ---
-</pre>
-
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>pre</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>首先添加自定义CSS样式文件，该<code>主题</code>目录下的<code>source/css</code>里新建<code>gallery.css</code>文件，复制以下css样式进去：</p>
 <pre class="line-numbers language-css"><code class="language-css"><span class="token selector"><span class="token class">.gallery-wrapper</span></span><span class="token punctuation">{</span>
   <span class="token property">padding-top</span><span class="token punctuation">:</span> <span class="token number">30</span>px<span class="token punctuation">;</span>
@@ -695,7 +694,7 @@ for (var i = 0, len = photos.length; i &lt; len; i++) {
 </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>script</span><span class="token punctuation">></span></span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>以上代码实现的功能呢，就是读取相册配置文件并把相册目录和相册列表都渲染成HTML，用<code>&lt;% %&gt;</code>包起来的代码是<code>ejs</code>语法，调试的话是在本地控制台输出的而不是浏览器，就是你输入<code>hexo s</code>的地方，我这里用的是WebStorm自带的终端，看下图：</p>
-<p><img src="https://images.liyangzone.com/article_img/%E6%B7%BB%E5%8A%A0%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/2019-07-22-06.jpg" alt></p>
+<p><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E6%B7%BB%E5%8A%A0%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/2019-07-22-06.jpg" alt></p>
 <p>另外上面代码里引用了两个<code>jquery插件</code>，分别是<code>fancybox</code>和<code>justifiedGallery</code>, 一个是点击弹出的轮播插件，一个是自动调整图片布局的插件，需要自行下载并放到相应目录，当然，你也可以用浏览器调试工具直接在我的博客上下载，在sources里找到对应的文件，另存为就行。</p>
 <h4 id="3、制作相册配置文件"><a href="#3、制作相册配置文件" class="headerlink" title="3、制作相册配置文件"></a>3、制作相册配置文件</h4><p>在<code>站点</code>目录<code>sources/_data/</code>下新建一个<code>galleries.json</code>的文件，模板如下：</p>
 <pre class="line-numbers language-json"><code class="language-json"><span class="token punctuation">[</span>
@@ -736,29 +735,28 @@ for (var i = 0, len = photos.length; i &lt; len; i++) {
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>就是一个包含多个相册的列表JSON，每个相册有以下字段，<code>name</code>是相册标题，<code>cover</code>是封面图片，从相册里随便选一个就行，<code>description</code>是相册介绍，<code>photos</code>是图片列表。图片较少的话手动复制进去就行，如果你图片较多的话推荐使用脚本之类的东西自动生成，我是使用了上面博客里的js文件生成的。我这里使用了七牛对象存储做为图床，需要在代码里加上七牛的地址才能正常显示。</p>
 <p>配置文件建好了之后还没完，只剩最后一个步骤了，在<code>galleries</code>下建立对应的相册名称目录和文件，比如我这三个相册需要建 2017 2018 2019三个目录，然后下面再分别新建<code>index.md</code>文件，文件内容为:</p>
-<pre>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>pre</span><span class="token punctuation">></span></span>
 ---
 title: 2017
 layout: "gallery"
 ---
-</pre>
-
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>pre</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>建好相应目录和文件之后，如果你的图片路径也没有错的话，相册目录和列表就都会渲染出来了，如下所示：</p>
-<p><img src="https://images.liyangzone.com/article_img/%E6%B7%BB%E5%8A%A0%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/2019-07-22-07.jpg" alt></p>
-<p><img src="https://images.liyangzone.com/article_img/%E6%B7%BB%E5%8A%A0%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/20190722_161044.jpg" alt></p>
-<p><img src="https://images.liyangzone.com/article_img/%E6%B7%BB%E5%8A%A0%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/20190722_160930.jpg" alt></p>
+<p><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E6%B7%BB%E5%8A%A0%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/2019-07-22-07.jpg" alt></p>
+<p><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E6%B7%BB%E5%8A%A0%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/20190722_161044.jpg" alt></p>
+<p><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E6%B7%BB%E5%8A%A0%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/20190722_160930.jpg" alt></p>
 <h4 id="4、照片列表的布局选择"><a href="#4、照片列表的布局选择" class="headerlink" title="4、照片列表的布局选择"></a>4、照片列表的布局选择</h4><p>上面的博客用的布局都比较简单粗暴，都是固定的大小和宽高比。但是不同的图片有不同的宽高比，用这种模式的话图片有两种显示方式，一是强制缩放到固定的宽高，二是裁切只显示一部分，但是都有缺点，第一个会图片会变形，第二个图片显示不全。那么有没有两全齐美的办法呢？答案是肯定的。首先我选用的是瀑布流布局，用CCS3的新特性实现的，这种模式的特点是等宽布局，固定列数，图片高度自适应，如下图：</p>
-<p><img src="https://images.liyangzone.com/article_img/%E6%B7%BB%E5%8A%A0%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/20190115114259.jpg" alt></p>
+<p><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E6%B7%BB%E5%8A%A0%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/20190115114259.jpg" alt></p>
 <p>看起来似乎没什么问题，高端大气上档次，然而做好了我发现图片的排列顺序是这个样子的，是按列竖向排列的，不太符合阅读习惯，PASS。</p>
-<p>另外一种布局呢是等高布局，如图；<br><img src="https://images.liyangzone.com/article_img/%E6%B7%BB%E5%8A%A0%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/20190723_110706.jpg" alt></p>
+<p>另外一种布局呢是等高布局，如图；<br><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E6%B7%BB%E5%8A%A0%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/20190723_110706.jpg" alt></p>
 <p>这种布局是等高布局，图片高度一致，宽度自适应，图片托管网站flickr就是用的这种模式，但是用CSS方法是实现不了的，因为每一行最后张图片不一定能正好撑满这一行，需要用js动态设置图片的宽高来实现，上面引用的<code>justifiedGallery</code>插件就是来完成这个的。<br>下面代码的功能就是初始化这个插件，间距是5px，每一行的高度是150px。</p>
 <pre class="line-numbers language-js"><code class="language-js">  <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#mygallery"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">justifiedGallery</span><span class="token punctuation">(</span><span class="token punctuation">{</span>margins<span class="token punctuation">:</span> <span class="token number">5</span><span class="token punctuation">,</span> rowHeight<span class="token punctuation">:</span> <span class="token number">150</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>这两种布局呢，上面的代码里都是包含了的。是可以手动切换的。只需要把上面那句代码注释掉就会切换到瀑布流布局，效果如下图：<br><img src="https://images.liyangzone.com/article_img/%E6%B7%BB%E5%8A%A0%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/20190723_134939.jpg" alt></p>
+<p>这两种布局呢，上面的代码里都是包含了的。是可以手动切换的。只需要把上面那句代码注释掉就会切换到瀑布流布局，效果如下图：<br><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E6%B7%BB%E5%8A%A0%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/20190723_134939.jpg" alt></p>
 <p>当然，你要是对我写的样式不满意的话也可以自己修改代码，边框和文件名都是可以去掉的。</p>
 <h4 id="5、图床相关事项"><a href="#5、图床相关事项" class="headerlink" title="5、图床相关事项"></a>5、图床相关事项</h4><p>2019-08-28更新:</p>
 <p>最初我是采用的七牛对象存储当为图床，但是我发现一个问题，在相册列表界面下，相册图片较多或图片体积很大的情况下加载速度会很慢，也会浪费大量的流量。七牛CDN免费流量只有10G，然而我还作死的把几个图片的链接地址放到了某论坛上，图片也没有做任何处理，一个图片为几MB大小，在我放出外链几个小时之后，CDN流量就爆了，超出了约60G：</p>
-<p><img src="https://images.liyangzone.com/article_img/%E6%B7%BB%E5%8A%A0%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/20190828_223502.jpg" alt></p>
+<p><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E6%B7%BB%E5%8A%A0%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/20190828_223502.jpg" alt></p>
 <p>为了防止类似的事情发生，以及减少CDN流量消耗，可以使用以下两种方案：</p>
 <p>一是手动生成图片的缩略图到另外一个新目录，保持与原相册目录结构一致。比如我一个图片路径为 /gallery/2017/XXX.jpg,缩略图结构应为/gallery-tiny/2017/XXX.jpg。</p>
 <p>在相册列表界面应使用缩略图而不是使用原图。上面代码中 <code>a标签</code>里的地址是大图地址，点击弹出的时候才会加载，<code>img</code>标签里的地址是缩略图地址。</p>
@@ -1161,31 +1159,31 @@ http://imgs.liyangzone.com/2017/IMG_20170508_163002.jpg!w75<span aria-hidden="tr
                 下一篇&nbsp;<i class="fa fa-chevron-right"></i>
             </div>
             <div class="card">
-                <a href="/2019/07/20/前端/JavaScript之再学习/">
+                <a href="/2019/07/17/markdown使用指南/">
                     <div class="card-image">
                         
                         
-                        <img src="https://images.liyangzone.com/medias/featureimages/5733685713_c93ac9410b_b.jpg" class="responsive-img" alt="JavaScript之再学习">
+                        <img src="https://images.liyangzone.com/medias/featureimages/12156466194_0b3617b44f_k.jpg" class="responsive-img" alt="Markdown使用指南">
                         
-                        <span class="card-title">JavaScript之再学习</span>
+                        <span class="card-title">Markdown使用指南</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            概览JavaScript 是一种面向对象的动态语言，它包含类型、运算符、标准内置（ built-in）对象和方法。它的语法来源于 Java 和 C，所以这两种语言的许多语法特性同样适用于 JavaScript。需要注意的一个主要区别是 Ja
+                            Markdown是什么？ 谁创造了它？ 为什么要使用它？ 怎么使用？
                         
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-20
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2019-07-17
                             </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
                             
-                            <a href="/categories/web前端/" class="post-category" target="_blank">
-                                    web前端
+                            <a href="/categories/技术分享/" class="post-category" target="_blank">
+                                    技术分享
                                 </a>
                             
                             
@@ -1195,8 +1193,8 @@ http://imgs.liyangzone.com/2017/IMG_20170508_163002.jpg!w75<span aria-hidden="tr
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/JavaScript/" target="_blank">
-                        <span class="chip bg-color">JavaScript</span>
+                    <a href="/tags/Markdown/" target="_blank">
+                        <span class="chip bg-color">Markdown</span>
                     </a>
                     
                 </div>
@@ -1318,7 +1316,7 @@ http://imgs.liyangzone.com/2017/IMG_20170508_163002.jpg!w75<span aria-hidden="tr
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">34k</span>
+                <span class="white-color">23.3k</span>
             
 
             

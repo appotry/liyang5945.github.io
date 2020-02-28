@@ -80,7 +80,7 @@
     </li>
     
     <li class="hide-on-med-and-down">
-        <a href="/categories" class="nav-link waves-effect waves-light">
+        <a href="/categories/" class="nav-link waves-effect waves-light">
             
             <i class="fa fa-bookmark"></i>
             
@@ -159,7 +159,7 @@
         </li>
         
         <li>
-            <a href="/categories" class="waves-effect waves-light">
+            <a href="/categories/" class="waves-effect waves-light">
                 
                 <i class="fa fa-fw fa-bookmark"></i>
                 
@@ -434,14 +434,14 @@
                     
                     <div class="info-break-policy">
                         <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
-                        1k
+                        2.1k
                     </div>
                     
 
                     
                     <div class="info-break-policy">
                         <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
-                        3 分
+                        8 分
                     </div>
                     
                 
@@ -453,21 +453,27 @@
         <div class="card-content article-card-content">
             <div id="articleContent">
                 <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>以前我的博客静态文件是放在一个带宽1Mbps的腾讯云主机上，文章里的图片也是放在云主机上的，当有些文章图片较多的时候，加载就会变得很慢。后来我将静态文件和图片全部迁移到腾讯对象存储(cos)里，并配置了CDN加速，从此加载速度不再是瓶颈，可以做到基本秒开。</p>
-<p>具体方案是将静态文件和图片文件分别放到两个存储桶里，放静态文件的存储桶CDN设置博客主域名，放图片的存储桶CDN设置二级域名，比如我设置了图片CDN二级域名为<code>images.liyangzone.com</code>,写文章的时候先上传图片到存储桶，然后在文章里就可以直接引用图片了。比如我在存储桶根目录上传了一张名为<code>test.jpg</code>的图片，它的地址就是<code>images.liyangzone.com/test.jpg</code>,而且支持多级目录，比一些图床什么的要方便很多，有些图床虽然免费，但是它的文件名一般是一个无规律的字符串，类似这种<code>https://i.loli.net/2020/01/17/Mb1fywFLrJ8khUS.png</code>,当你传了很多图片时可能会一脸懵逼，分不清哪张是什么内容了，不利于维护。</p>
+<p>具体方案是将静态文件和图片文件分别放到两个存储桶里，放静态文件的存储桶CDN设置博客主域名，放图片的存储桶CDN设置二级域名，比如我设置了图片CDN二级域名为<code>images.liyangzone.com</code>，写文章的时候先上传图片到存储桶，然后在文章里就可以直接引用图片了。比如我在存储桶根目录上传了一张名为<code>test.jpg</code>的图片，它的地址就是<code>images.liyangzone.com/test.jpg</code>，而且支持多级目录，比一些图床什么的要方便很多，有些图床虽然免费，但是它的文件名一般是一个无规律的字符串，类似这种<code>https://i.loli.net/2020/01/17/Mb1fywFLrJ8khUS.png</code>，当你传了很多图片时可能会一脸懵逼，分不清哪张是什么内容了，不利于维护。</p>
 <p>而博客静态文件呢，我们可以用<code>hexo-deployer-cos</code>这个插件来替我们完成，具体配置教程可参考此文章：<a href="https://cloud.tencent.com/developer/article/1185253" target="_blank" rel="noopener">如何在腾讯云COS部署HEXO博客</a>。<br>配置完了cos各种参数后，执行<code>hexo d</code>命令就会将本地文件上传至cos了，可是这种方式需要本地安装nodejs和hexo，如果想在别的电脑上写文章就不方便了，有没有一种更加便捷的部署方式呢？答案是有的，那就是——<strong>持续集成</strong>。</p>
 <h3 id="什么是持续集成"><a href="#什么是持续集成" class="headerlink" title="什么是持续集成"></a>什么是持续集成</h3><p>持续集成（Continuous Integration）是一种软件开发实践。 在持续集成中，团队成员频繁集成他们的工作成果，一般每人每天至少集成一次，也可以多次。 每次集成会经过自动构建（包括自动测试）的检验，以尽快发现集成错误。</p>
 <h3 id="什么是Travis-CI"><a href="#什么是Travis-CI" class="headerlink" title="什么是Travis CI"></a>什么是Travis CI</h3><p>Travis CI 是目前新兴的开源持续集成构建项目，它与 jenkins，GO 的很明显的特别在于采用 yaml 格式，同时它是在线的服务，不像 jenkins 需要你本地搭建服务器，简洁清新独树一帜。目前大多数的 Github 项目都已经移入到 Travis CI 的构建队列中，据说Travis CI 每天运行超过 4000 次完整构建。对于做开源项目或者 Github 的使用者，如果你的项目还没有加入 Travis CI 构建队列，那么我真的想对你说 OUT 了。</p>
 <h3 id="为什么选择Travis-CI"><a href="#为什么选择Travis-CI" class="headerlink" title="为什么选择Travis CI"></a>为什么选择Travis CI</h3><p>为什么我们要选择 Travis 呢，因为它和 Github 集成的程度非常高，对于 Github 上的开源项目，可以免费在 Travis 上构建（为免费的互联网精神干杯🍻），而非开源的私有项目想在 Travis 上构建价格还是非常感人的。</p>
-<p>先把在 Travis 上进行自动构建的原理说一下：</p>
-<ul>
-<li>每当我们在本地写好了博文之后，push到博客仓库的<code>blog-source</code>分支</li>
+<h3 id="折腾Travis-CI后有能达到什么效果？"><a href="#折腾Travis-CI后有能达到什么效果？" class="headerlink" title="折腾Travis CI后有能达到什么效果？"></a>折腾Travis CI后有能达到什么效果？</h3><ol>
+<li><p>直接在线编辑文件，立即生效：<br>假设你已经发表了一篇文章，过了几天你在朋友机器上浏览发现有几个明显的错别字，对于有强迫症的，这是不能容忍的。 但你手头又没有完整的hexo+nodejs+git的开发环境，重新下载git，node，hexo配置会花费不少时间，特别不划算。</p>
+<p>如果按照这篇完整折腾完，你可以直接用浏览器访问github个人项目仓库，直接编辑那篇post的原md文件，前后2分钟改完。 稍等片刻，你的博客就自动更新了。</p>
+</li>
+<li><p>自动部署，同时部署到多个地方：<br>hexo在部署的时候可以设置部署到多端，只需在博客配置文件里设置多个deploy即可，本篇文章暂时只写两种，gh-pages和cos。部署到更多地方也是支持的，比如gitlab，国内的coding等。</p>
+</li>
+<li><p>部署快捷方便：<br>手动deploy需要推送public整个folder到github上，当后期网站文章、图片较多时候，对于天朝的网络，有时候连接github 就是不顺畅，经常要傻等不少上传时间。<br>有了CI，你可以只提交post文件里单独的md文件即可，很快很爽，谁用谁知道。</p>
+</li>
+</ol>
+<h3 id="Travis自动构建原理"><a href="#Travis自动构建原理" class="headerlink" title="Travis自动构建原理"></a>Travis自动构建原理</h3><ol>
+<li>每当我们在本地写好了博文之后，push到博客仓库的<code>blog-source</code>分支。</li>
 <li>Travis上可以对这个项目的<code>blog-source</code>分支设置钩子，每当检测到 push 的时候就去仓库 clone 源代码到Travis的云服务器上。</li>
-<li>Travis云服务器按顺序执行一系列构建脚本,比如 <code>npm install</code>、<code>hexo g</code> 、<code>hexo d</code>等。</li>
-</ul>
-<p>hexo在部署的时候可以设置多端部署,在博客配置文件里设置多个deploy即可,参考<a href="https://hexo.io/zh-cn/docs/one-command-deployment" target="_blank" rel="noopener">hexo官方文档-部署</a>，我这里只设置了两个，github-pages和cos：</p>
-<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token comment" spellcheck="true"># 下面的写法是travis-ci部署到github-pages和腾讯cos</span>
-
-<span class="token comment" spellcheck="true">#deploy:</span>
+<li>Travis云服务器按顺序执行一系列构建脚本，比如 <code>npm install</code>、<code>hexo g</code> 、<code>hexo d</code>等。</li>
+</ol>
+<h3 id="如何操作"><a href="#如何操作" class="headerlink" title="如何操作"></a>如何操作</h3><h4 id="1-配置hexo多端部署"><a href="#1-配置hexo多端部署" class="headerlink" title="1. 配置hexo多端部署"></a>1. 配置hexo多端部署</h4><p>修改博客根目录配置文件<code>_config.yml</code>，参考<a href="https://hexo.io/zh-cn/docs/one-command-deployment" target="_blank" rel="noopener">hexo官方文档-部署</a>，我这里只设置了两个，github-pages和cos，下面的写法是travis-ci部署到github-pages和腾讯cos</p>
+<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token comment" spellcheck="true">#deploy:</span>
 <span class="token punctuation">-</span> <span class="token key atrule">type</span><span class="token punctuation">:</span> git
   <span class="token key atrule">branch</span><span class="token punctuation">:</span> master
   <span class="token key atrule">repo</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//gh_token@github.com/liyang5945/liyang5945.github.io.git
@@ -476,20 +482,88 @@
   <span class="token key atrule">secretId</span><span class="token punctuation">:</span> cos_secretId
   <span class="token key atrule">secretKey</span><span class="token punctuation">:</span> cos_secretKey
   <span class="token key atrule">bucket</span><span class="token punctuation">:</span> cos_bucket
-  <span class="token key atrule">region</span><span class="token punctuation">:</span> ap<span class="token punctuation">-</span>shanghai
-
-<span class="token comment" spellcheck="true"># 下面的写法是本地部署到github-pages和腾讯cos</span>
-
-<span class="token key atrule">deploy</span><span class="token punctuation">:</span>
+  <span class="token key atrule">region</span><span class="token punctuation">:</span> ap<span class="token punctuation">-</span>shanghai<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>如果你感觉travis太麻烦，下面的写法是本地部署到github-pages和腾讯cos，注意不要把真实的secretId等值提交到github上面，腾讯云会检测到并打电话提示你有安全风险（不要问我我咋知道的），建议本地部署的时候复制进去，部署完删除即可。</p>
+<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">deploy</span><span class="token punctuation">:</span>
   <span class="token punctuation">-</span> <span class="token key atrule">type</span><span class="token punctuation">:</span> git
     <span class="token key atrule">repo</span><span class="token punctuation">:</span> https<span class="token punctuation">:</span>//github.com/liyang5945/liyang5945.github.io
   <span class="token punctuation">-</span> <span class="token key atrule">type</span><span class="token punctuation">:</span> cos
-    <span class="token key atrule">appId</span><span class="token punctuation">:</span> ********
-    <span class="token key atrule">secretId</span><span class="token punctuation">:</span> *****************
-    <span class="token key atrule">secretKey</span><span class="token punctuation">:</span> *****************
-    <span class="token key atrule">bucket</span><span class="token punctuation">:</span> liyang<span class="token punctuation">-</span>blog<span class="token punctuation">-</span>********
+    <span class="token key atrule">appId</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true">#你的appId</span>
+    <span class="token key atrule">secretId</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true">#你的secretId</span>
+    <span class="token key atrule">secretKey</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true">#你的secretKey</span>
+    <span class="token key atrule">bucket</span><span class="token punctuation">:</span> <span class="token comment" spellcheck="true">#此项格式为存储桶名称+appId</span>
     <span class="token key atrule">region</span><span class="token punctuation">:</span> ap<span class="token punctuation">-</span>shanghai
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="2-注册travis账号，配置环境变量"><a href="#2-注册travis账号，配置环境变量" class="headerlink" title="2. 注册travis账号，配置环境变量"></a>2. 注册travis账号，配置环境变量</h4><p>注册travis-ci账号，新建项目等操作参考此贴：<a href="https://www.jianshu.com/p/e22c13d85659" target="_blank" rel="noopener">手把手教你使用Travis CI自动部署你的Hexo博客到Github上</a>，这里不再细说。</p>
+<p>接下来要做的就是要把github的token和cos的appId等添加到travis的环境变量里，这样travis云服务器才能帮你部署到github和cos，设置好后如下图所示：</p>
+<p><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/travis-ci/20200118_103156.png" alt></p>
+<h4 id="3-配置travis执行脚本"><a href="#3-配置travis执行脚本" class="headerlink" title="3. 配置travis执行脚本"></a>3. 配置travis执行脚本</h4><p>最后还需要新建一个travis配置文件<code>.travis.yml</code>，放到博客根目录下，我的配置文件如下：</p>
+<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">language</span><span class="token punctuation">:</span> node_js
+
+<span class="token key atrule">node_js</span><span class="token punctuation">:</span> stable  <span class="token comment" spellcheck="true"># 要安装的node版本为当前的稳定版</span>
+
+<span class="token key atrule">before_install</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> export TZ='Asia/Shanghai' <span class="token comment" spellcheck="true"># 更改时区</span>
+<span class="token key atrule">install</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> npm install
+
+<span class="token key atrule">script</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> hexo g
+
+<span class="token key atrule">after_script</span><span class="token punctuation">:</span>   <span class="token comment" spellcheck="true"># 最后执行的命令</span>
+
+  <span class="token punctuation">-</span> sed <span class="token punctuation">-</span>i "s/cos_appId/$<span class="token punctuation">{</span>cos_appId<span class="token punctuation">}</span>/g" _config.yml
+  <span class="token punctuation">-</span> sed <span class="token punctuation">-</span>i "s/cos_secretId/$<span class="token punctuation">{</span>cos_secretId<span class="token punctuation">}</span>/g" _config.yml
+  <span class="token punctuation">-</span> sed <span class="token punctuation">-</span>i "s/cos_secretKey/$<span class="token punctuation">{</span>cos_secretKey<span class="token punctuation">}</span>/g" _config.yml
+  <span class="token punctuation">-</span> sed <span class="token punctuation">-</span>i "s/cos_bucket/$<span class="token punctuation">{</span>cos_bucket<span class="token punctuation">}</span>/g" _config.yml
+  <span class="token punctuation">-</span> sed <span class="token punctuation">-</span>i "s/gh_token/$<span class="token punctuation">{</span>Travis_Token<span class="token punctuation">}</span>/g" _config.yml
+  <span class="token punctuation">-</span> hexo deploy
+
+<span class="token key atrule">branches</span><span class="token punctuation">:</span>
+  <span class="token key atrule">only</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> blog<span class="token punctuation">-</span>source <span class="token comment" spellcheck="true"># 触发持续集成的分支</span>
+
+<span class="token key atrule">env</span><span class="token punctuation">:</span>
+  <span class="token key atrule">global</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">GH_REF</span><span class="token punctuation">:</span> github.com/liyang5945/liyang5945.github.io.git <span class="token comment" spellcheck="true"># 就是你github上存放静态博客最终文件的仓库地址末尾加上.git</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>后面的那几条<code>sed</code>语句的作用就是从我们配置的环境变量里读取真实的cos_appId等参数替换本地（travis云服务器本地）的<code>_config.yml</code>里的形参。<br>替换成真实值之后，再执行<code>hexo -d</code>命令，部署到gh-pages和cos。</p>
+<p>如果你只需要部署到gh-pages，下面的部署命令还可以写出下面这样，你可以手动设置commit信息。</p>
+<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">after_script</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> cd ./public
+  <span class="token punctuation">-</span> git init
+  <span class="token punctuation">-</span> git config user.name "your name"
+  <span class="token punctuation">-</span> git config user.email "your email"
+  <span class="token punctuation">-</span> git add .
+  <span class="token punctuation">-</span> git commit <span class="token punctuation">-</span>m "Update docs"
+  <span class="token punctuation">-</span> git push <span class="token punctuation">-</span><span class="token punctuation">-</span>force <span class="token punctuation">-</span><span class="token punctuation">-</span>quiet "https<span class="token punctuation">:</span>//$<span class="token punctuation">{</span>GH_TOKEN<span class="token punctuation">}</span>@$<span class="token punctuation">{</span>GH_REF<span class="token punctuation">}</span>" master<span class="token punctuation">:</span>master
+
+<span class="token key atrule">branches</span><span class="token punctuation">:</span>
+  <span class="token key atrule">only</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> blog<span class="token punctuation">-</span>source <span class="token comment" spellcheck="true"># 触发持续集成的分支</span>
+
+<span class="token key atrule">env</span><span class="token punctuation">:</span>
+  <span class="token key atrule">global</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> <span class="token key atrule">GH_REF</span><span class="token punctuation">:</span> github.com/liyang5945/liyang5945.github.io.git<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>但是这样会有一个问题，那就是commit记录只有一条，如果你在意这个问题，那就使用下面的写法，先拉取到本地再push：</p>
+<pre class="line-numbers language-yaml"><code class="language-yaml"><span class="token key atrule">after_script</span><span class="token punctuation">:</span>
+  <span class="token punctuation">-</span> git clone https<span class="token punctuation">:</span>//$<span class="token punctuation">{</span>GH_REF<span class="token punctuation">}</span> .deploy_git  <span class="token comment" spellcheck="true"># GH_REF是最下面配置的仓库地址</span>
+  <span class="token punctuation">-</span> cd .deploy_git
+  <span class="token punctuation">-</span> git checkout master
+  <span class="token punctuation">-</span> cd ../
+  <span class="token punctuation">-</span> mv .deploy_git/.git/ ./public/   <span class="token comment" spellcheck="true"># 这一步之前的操作是为了保留master分支的提交记录，不然每次git init的话只有1条commit</span>
+  <span class="token punctuation">-</span> cd ./public
+  <span class="token punctuation">-</span> git config user.name "your name"  
+  <span class="token punctuation">-</span> git config user.email "your email"  
+  <span class="token punctuation">-</span> git add .
+  <span class="token punctuation">-</span> git commit <span class="token punctuation">-</span>m "Travis CI Auto Builder at `date +"%Y<span class="token punctuation">-</span>%m<span class="token punctuation">-</span>%d %H<span class="token punctuation">:</span>%M"`"  <span class="token comment" spellcheck="true"># 提交记录包含时间 跟上面更改时区配合</span>
+  <span class="token punctuation">-</span> git push <span class="token punctuation">-</span><span class="token punctuation">-</span>force <span class="token punctuation">-</span><span class="token punctuation">-</span>quiet "https<span class="token punctuation">:</span>//$<span class="token punctuation">{</span>Travis_Token<span class="token punctuation">}</span>@$<span class="token punctuation">{</span>GH_REF<span class="token punctuation">}</span>" master<span class="token punctuation">:</span>master  <span class="token comment" spellcheck="true">#</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="4-测试是否成功"><a href="#4-测试是否成功" class="headerlink" title="4. 测试是否成功"></a>4. 测试是否成功</h4><p>改动本地文件然后commit，并push到github，不出意外的话可以看到travis云服务器执行命令的过程：</p>
+<p><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/travis-ci/20200118_115731.png" alt></p>
+<p><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/travis-ci/20200118_115632.png" alt></p>
+<p>我们再去github和腾讯cos里看一下，可以看到commit记录和文件上传日期都是最新的。</p>
+<p><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/travis-ci/20200118_115141.png" alt></p>
+<p><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/travis-ci/20200118_115525.png" alt></p>
 
             </div>
             <hr/>
@@ -793,30 +867,29 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fa fa-dot-circle-o"></i>&nbsp;本篇
-            </div>
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
-                <a href="/2020/01/16/deploy-hexo-blog-with-travis-ci/">
+                <a href="/2020/02/20/前端/vue项目watch内的函数重复触发问题/">
                     <div class="card-image">
                         
                         
-                        <img src="https://images.liyangzone.com/medias/featureimages/12563496205_cf153f31e4_k.jpg" class="responsive-img" alt="使用Travis-CI部署hexo博客到腾讯cos&github-pages">
+                        <img src="https://images.liyangzone.com/medias/featureimages/9491229619_9eb1070c50_k.jpg" class="responsive-img" alt="vue项目watch内的函数重复触发问题">
                         
-                        <span class="card-title">使用Travis-CI部署hexo博客到腾讯cos&github-pages</span>
+                        <span class="card-title">vue项目watch内的函数重复触发问题</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
                     <div class="summary block-with-text">
                         
-                            前言以前我的博客静态文件是放在一个带宽1Mbps的腾讯云主机上，文章里的图片也是放在云主机上的，当有些文章图片较多的时候，加载就会变得很慢。后来我将静态文件和图片全部迁移到腾讯对象存储(cos)里，并配置了CDN加速，从此加载速度不再是瓶颈
+                            问题描述：有两个页面A和B，每个页面里都有一个getList()方法。这个两个方法都需要传一个相同的参数C，参数C的选择过程又比较麻烦。为了避免在切换A、B两个界面重复选择参数C的问题，我将参数C存入vuex中，然后在两个页面里都使用wat
                         
                     </div>
                     <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-01-16
-                            </span>
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-02-20
+                        </span>
                         <span class="publish-author">
                             
                             <i class="fa fa-bookmark fa-fw icon-category"></i>
@@ -829,16 +902,11 @@
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
-                    <a href="/tags/hexo/" target="_blank">
-                        <span class="chip bg-color">hexo</span>
-                    </a>
-                    
-                    <a href="/tags/Travis-CI/" target="_blank">
-                        <span class="chip bg-color">Travis-CI</span>
+                    <a href="/tags/vue/" target="_blank">
+                        <span class="chip bg-color">vue</span>
                     </a>
                     
                 </div>
@@ -855,7 +923,7 @@
                 <a href="/2019/12/22/前端/使用FLEX实现一种上下高度不固定的自适应布局/">
                     <div class="card-image">
                         
-                        <img src="https://images.liyangzone.com/article_img/FLEX上下布局/20191221_103338.png" class="responsive-img" alt="使用FLEX实现一种上下高度不固定的自适应布局">
+                        <img src="https://images.liyangzone.com/article_img/技术相关/FLEX上下布局/20191221_103338.png" class="responsive-img" alt="使用FLEX实现一种上下高度不固定的自适应布局">
                         
                         <span class="card-title">使用FLEX实现一种上下高度不固定的自适应布局</span>
                     </div>
@@ -1015,7 +1083,7 @@
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">34k</span>
+                <span class="white-color">23.3k</span>
             
 
             

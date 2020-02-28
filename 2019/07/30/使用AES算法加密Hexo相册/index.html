@@ -81,7 +81,7 @@
     </li>
     
     <li class="hide-on-med-and-down">
-        <a href="/categories" class="nav-link waves-effect waves-light">
+        <a href="/categories/" class="nav-link waves-effect waves-light">
             
             <i class="fa fa-bookmark"></i>
             
@@ -160,7 +160,7 @@
         </li>
         
         <li>
-            <a href="/categories" class="waves-effect waves-light">
+            <a href="/categories/" class="waves-effect waves-light">
                 
                 <i class="fa fa-fw fa-bookmark"></i>
                 
@@ -465,17 +465,17 @@
 <p>在上篇教程中，我们已经实现了hexo的分类相册功能。然后我发现那个大佬的相册竟然还有加密的功能（点击进入<a href="http://www.rayblog.cn/album/" target="_blank" rel="noopener">大佬的相册</a>），在大佬的这篇<a href="http://www.rayblog.cn/posts/uncategorized/2017-07-05-establish-blog.html" target="_blank" rel="noopener">教程</a>下面，还有一个参考资料：使用AES算法加密hexo文章，可惜的是链接已经失效了，不过也没有关系，在网上查找相关资料后，我也把它实现了，本篇教程就来实现相册加密功能。</p>
 <p>先来科普一下AES加密算法：高级加密标准（英语：Advanced Encryption Standard，缩写：AES），在密码学中又称Rijndael加密法，是美国联邦政府采用的一种区块加密标准。这个标准用来替代原先的DES，已经被多方分析且广为全世界所使用。经过五年的甄选流程，高级加密标准由美国国家标准与技术研究院（NIST）于2001年11月26日发布于FIPS PUB 197，并在2002年5月26日成为有效的标准。2006年，高级加密标准已然成为对称密钥加密中最流行的算法之一。</p>
 <h4 id="1、主题自带的加密"><a href="#1、主题自带的加密" class="headerlink" title="1、主题自带的加密"></a>1、主题自带的加密</h4><p>首先我发现本主题自带一个加密功能：如下图：</p>
-<p><img src="https://images.liyangzone.com/article_img/%E5%8A%A0%E5%AF%86%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/20190730_120352.png" alt></p>
+<p><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E5%8A%A0%E5%AF%86%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/20190730_120352.png" alt></p>
 <p>它的实现效果是这样的：</p>
-<p><img src="https://images.liyangzone.com/article_img/%E5%8A%A0%E5%AF%86%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/20190730_120754.png" alt></p>
+<p><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E5%8A%A0%E5%AF%86%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/20190730_120754.png" alt></p>
 <p>在进入界面的时候就要求输入密码，不输或输入错误都会跳转到首页。</p>
 <p>在我看了源码之后发现是这样实现的，如果文章配置了加密就在页面里加上一段js代码，源码在<code>post.ejs</code>文件里，如下图；</p>
-<p><img src="https://images.liyangzone.com/article_img/%E5%8A%A0%E5%AF%86%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/20190730_121113.png" alt></p>
+<p><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E5%8A%A0%E5%AF%86%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/20190730_121113.png" alt></p>
 <p>页面内生成的js代码呢，是这样的：</p>
-<p><img src="https://images.liyangzone.com/article_img/%E5%8A%A0%E5%AF%86%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/20190730_121325.png" alt></p>
+<p><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E5%8A%A0%E5%AF%86%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/20190730_121325.png" alt></p>
 <p>我们可以看到密码是直接写在页面内的，主题作者是采用<code>SHA256</code>再加密一遍密码，再用这个值当密码，防止别人识破。然而这种方式是伪加密的，查看网页的源代码就可以看到文章的内容。这种方式可以阻挡99%的人，但是对付懂行的人就不行了，有心人费点心思就能破解。</p>
 <h4 id="2、Hexo插件加密"><a href="#2、Hexo插件加密" class="headerlink" title="2、Hexo插件加密"></a>2、Hexo插件加密</h4><p>然后我以<code>hexo 加密</code>为关键字搜索相关教程，得到的结果如下：</p>
-<p><img src="https://images.liyangzone.com/article_img/%E5%8A%A0%E5%AF%86%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/20190730_115324.png" alt></p>
+<p><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E5%8A%A0%E5%AF%86%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/20190730_115324.png" alt></p>
 <p>里面的内容大同小异，不外乎两个hexo的插件：一个是<code>hexo-blog-encrypt</code>，另一个是<code>hexo-encrypt</code>。在我把两个插件都尝试过了之后，发现这两个插件只能加密<code>文章</code>，也就是hexo从md文件里读取到的文章内容。而我们的相册呢，是根据配置文件自动生成的，并没有在md文件里写着，实现不了加密。</p>
 <p>好吧，那我就研究一下这两个插件的原理，看它们是如何实现文章加密的。</p>
 <p>先使用<code>hexo-blog-encrypt</code>插件，给<a href>hello world</a>这篇文章加密试试：<br>首先启用该插件，在根目录的_config.yml中启用该插件，添加以下代码:</p>
@@ -496,25 +496,25 @@ categories:
 <span class="token hr punctuation">---</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 <p>然后<code>hexo-blog-encrypt</code>插件就会把文章加密了，如下图：</p>
-<p><img src="https://images.liyangzone.com/article_img/%E5%8A%A0%E5%AF%86%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/20190730_131238.png" alt></p>
+<p><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E5%8A%A0%E5%AF%86%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/20190730_131238.png" alt></p>
 <p>页面结构如下：</p>
-<p><img src="https://images.liyangzone.com/article_img/%E5%8A%A0%E5%AF%86%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/20190730_131459.png" alt></p>
+<p><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E5%8A%A0%E5%AF%86%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/20190730_131459.png" alt></p>
 <p>文章的内容被加密成了这么一坨字符串，解密后变成了这样：</p>
-<p><img src="https://images.liyangzone.com/article_img/%E5%8A%A0%E5%AF%86%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/20190730_131813.png" alt></p>
+<p><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E5%8A%A0%E5%AF%86%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/20190730_131813.png" alt></p>
 <p>文章的内容，就是两个P标签。</p>
 <h4 id="3、插件的加密过程"><a href="#3、插件的加密过程" class="headerlink" title="3、插件的加密过程"></a>3、插件的加密过程</h4><p>那一坨字符串是怎么变成两个P标签的呢，我仔细研究后发现解密的功能在<code>blog-encrypt.js</code>这个文件里，在知道正确密码的情况下，执行了四步转换才将那个字符串解密，源码如下：</p>
-<p><img src="https://images.liyangzone.com/article_img/%E5%8A%A0%E5%AF%86%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/20190730_133345.png" alt></p>
+<p><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E5%8A%A0%E5%AF%86%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/20190730_133345.png" alt></p>
 <p>那么这四步都干了什么呢，我把上面加密后的一坨字符串和相关js都放到一个html里在浏览器控制台调试一下，看看究竟是怎么解密的：</p>
-<p><img src="https://images.liyangzone.com/article_img/%E5%8A%A0%E5%AF%86%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/20190730_133720.png" alt></p>
+<p><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E5%8A%A0%E5%AF%86%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/20190730_133720.png" alt></p>
 <p>控制台输出如下：</p>
-<p><img src="https://images.liyangzone.com/article_img/%E5%8A%A0%E5%AF%86%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/20190730_133817.png" alt></p>
+<p><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E5%8A%A0%E5%AF%86%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/20190730_133817.png" alt></p>
 <p>我们可以看到，在第四步输出了解密后的HTML标签。</p>
 <p>解密步骤如下：</p>
 <p>1、根据密码使用AES算法将密文解密，解密的代码为：</p>
 <pre class="line-numbers language-js"><code class="language-js">  <span class="token keyword">let</span> content <span class="token operator">=</span> CryptoJS<span class="token punctuation">.</span>AES<span class="token punctuation">.</span><span class="token function">decrypt</span><span class="token punctuation">(</span>encriptHtmlStr<span class="token punctuation">,</span> password<span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>解密出来的内容是一个JS对象，里面有一个words数组，展开后如下图：</p>
-<p><img src="https://images.liyangzone.com/article_img/%E5%8A%A0%E5%AF%86%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/20190730_135141.png" alt></p>
+<p><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E5%8A%A0%E5%AF%86%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/20190730_135141.png" alt></p>
 <p>2、将上面那个JS对象转换为utf-8码，转换后为成为一个base64字符串。</p>
 <p>3、解码base64字符串，解码后是一个经过js转码(escape)的字符串。</p>
 <p>4、解码(unescape)上面的字符串，最终结果为HTML标签。</p>
@@ -531,7 +531,7 @@ data<span class="token punctuation">.</span>content <span class="token operator"
 <p>那么我们也能写一个加密函数，在生成HTML字符串的时候加密它，然后把加密后的字符串渲染出来。</p>
 <h4 id="4、加密辅助函数"><a href="#4、加密辅助函数" class="headerlink" title="4、加密辅助函数"></a>4、加密辅助函数</h4><p>然而在实际操作的时候我发现在ejs文件里面用常规的方法引入<code>npm</code>插件是不行的，无论是<code>import &#39;crypto-js&#39;</code>还是 <code>require(&#39;crypto-js&#39;)</code>都是不行的。那么如何在ejs里面调用外部函数呢？ </p>
 <p>在查看<a href="https://hexo.io/zh-cn/api/helper.html" target="_blank" rel="noopener">官方文档</a>之后发现需要自己写一个辅助函数（helper），才能在ejs里调用它：</p>
-<p><img src="https://images.liyangzone.com/article_img/%E5%8A%A0%E5%AF%86%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/20190730_192430.png" alt></p>
+<p><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E5%8A%A0%E5%AF%86%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/20190730_192430.png" alt></p>
 <p>然后我们在主题根目录下新建以下目录和文件<code>scripts/helpers/encrypt.js</code>，<code>encrypt.js</code>内代码如下：</p>
 <pre class="line-numbers language-js"><code class="language-js">
 <span class="token comment" spellcheck="true">/* global hexo */</span>
@@ -581,8 +581,8 @@ hexo<span class="token punctuation">.</span>extend<span class="token punctuation
 <p>初始化<code>justifiedGallery</code>插件的那句代码修改成下面的，就是改了一个id</p>
 <pre class="line-numbers language-js"><code class="language-js">  <span class="token function">$</span><span class="token punctuation">(</span><span class="token string">"#encrypt-blog"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">justifiedGallery</span><span class="token punctuation">(</span><span class="token punctuation">{</span>margins<span class="token punctuation">:</span> <span class="token number">5</span><span class="token punctuation">,</span> rowHeight<span class="token punctuation">:</span> <span class="token number">150</span><span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 <p>这段代码的作用就是判断相册是否有密码，有则加密，没有则正常渲染，密码也是写在md文件的头部，加密后页面样式和HTML结构如下：</p>
-<p><img src="https://images.liyangzone.com/article_img/%E5%8A%A0%E5%AF%86%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/20190730_220409.png" alt></p>
-<p><img src="https://images.liyangzone.com/article_img/%E5%8A%A0%E5%AF%86%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/20190730_211445.png" alt></p>
+<p><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E5%8A%A0%E5%AF%86%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/20190730_220409.png" alt></p>
+<p><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E5%8A%A0%E5%AF%86%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/20190730_211445.png" alt></p>
 <p>可以看到内容已经被加密成了一坨乱码，在这里，我手动加了一个<code>解密</code>按钮，原来插件是没有的，然后写点css美化一下，我是加到了<code>my.css</code>里面</p>
 <pre class="line-numbers language-css"><code class="language-css"><span class="token selector"><span class="token class">.hbe-input-container</span>  <span class="token class">.btn-decrypt</span></span><span class="token punctuation">{</span>
   <span class="token property">display</span><span class="token punctuation">:</span> inline-block<span class="token punctuation">;</span>
@@ -964,7 +964,7 @@ hexo<span class="token punctuation">.</span>extend<span class="token punctuation
                 <a href="/2019/08/22/青海湖骑行记/">
                     <div class="card-image">
                         
-                        <img src="https://images.liyangzone.com/article_img/青海湖骑行记/IMG_20190815_155942.jpg" class="responsive-img" alt="青海湖骑行记">
+                        <img src="https://images.liyangzone.com/article_img/生活相关/青海湖骑行记/IMG_20190815_155942.jpg" class="responsive-img" alt="青海湖骑行记">
                         
                         <span class="card-title">青海湖骑行记</span>
                     </div>
@@ -1179,7 +1179,7 @@ hexo<span class="token punctuation">.</span>extend<span class="token punctuation
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">34k</span>
+                <span class="white-color">23.3k</span>
             
 
             
