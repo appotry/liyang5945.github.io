@@ -399,8 +399,16 @@
                     
                     <div class="article-tag">
                         
+                            <a href="/tags/教程/" target="_blank">
+                                <span class="chip bg-color">教程</span>
+                            </a>
+                        
                             <a href="/tags/excel/" target="_blank">
                                 <span class="chip bg-color">excel</span>
+                            </a>
+                        
+                            <a href="/tags/多级表头/" target="_blank">
+                                <span class="chip bg-color">多级表头</span>
                             </a>
                         
                     </div>
@@ -469,8 +477,9 @@
 <h3 id="使用教程"><a href="#使用教程" class="headerlink" title="使用教程"></a>使用教程</h3><p>使用npm安装<code>xlsx</code>和<code>file-saver</code>插件</p>
 <pre class="line-numbers language-shell"><code class="language-shell">npm install xlsx --save
 npm install file-saver --save<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
-<p>下载Export2Excel.js文件，放到<code>src/vendor</code>目录下，下载地址：<a href="https://raw.githubusercontent.com/PanJiaChen/vue-element-admin/master/src/vendor/Export2Excel.js" target="_blank" rel="noopener">Export2Excel.js</a></p>
+<p>下载Export2Excel.js文件，放到<code>src/vendor</code>目录下，下载地址：<a href="https://raw.githubusercontent.com/PanJiaChen/vue-element-admin/master/src/vendor/Export2Excel.js" target="_blank" rel="noopener">Export2Excel.js</a>(github地址，打不开请科学上网）</p>
 <p>然后提取合并的表头数据，这种格式的表头数据比上面那种浅显易懂，如何合并可参考下面的图片，把蓝色部分合并单元格的坐标提取出来即可，下图的表头数据为：</p>
+<p><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E5%AF%BC%E5%87%BA%E5%A4%9A%E7%BA%A7%E8%A1%A8%E5%A4%B4excel/20200227_111320.png" alt></p>
 <pre class="line-numbers language-js"><code class="language-js">
 <span class="token keyword">const</span> multiHeader <span class="token operator">=</span>
                    <span class="token punctuation">[</span>
@@ -480,7 +489,6 @@ npm install file-saver --save<span aria-hidden="true" class="line-numbers-rows">
 <span class="token keyword">const</span> header <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">''</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">,</span> <span class="token string">'省份'</span><span class="token punctuation">,</span> <span class="token string">'市区'</span><span class="token punctuation">,</span> <span class="token string">'地址'</span><span class="token punctuation">,</span> <span class="token string">'邮编'</span><span class="token punctuation">]</span> <span class="token comment" spellcheck="true">// 最后一行的表头数据，合并过的也要用空白补全</span>
 <span class="token keyword">const</span> merges <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'A1:A3'</span><span class="token punctuation">,</span> <span class="token string">'B1:F1'</span><span class="token punctuation">,</span> <span class="token string">'B2:B3'</span><span class="token punctuation">,</span> <span class="token string">'C2:F2'</span><span class="token punctuation">]</span> <span class="token comment" spellcheck="true">//合并单元格的数据</span>
 <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p><img src="https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E5%AF%BC%E5%87%BA%E5%A4%9A%E7%BA%A7%E8%A1%A8%E5%A4%B4excel/20200227_111320.png" alt></p>
 <p>vue文件源码：</p>
 <pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>template</span><span class="token punctuation">></span></span>
   <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token style-attr language-css"><span class="token attr-name"> <span class="token attr-name">style</span></span><span class="token punctuation">="</span><span class="token attr-value"><span class="token property">padding</span><span class="token punctuation">:</span> <span class="token number">20</span>px<span class="token punctuation">;</span></span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
@@ -971,6 +979,10 @@ const rawData =
                 
                 <div class="card-action article-tags">
                     
+                    <a href="/tags/JavaScript/" target="_blank">
+                        <span class="chip bg-color">JavaScript</span>
+                    </a>
+                    
                     <a href="/tags/算法/" target="_blank">
                         <span class="chip bg-color">算法</span>
                     </a>
@@ -1022,6 +1034,10 @@ const rawData =
                     
                     <a href="/tags/vue/" target="_blank">
                         <span class="chip bg-color">vue</span>
+                    </a>
+                    
+                    <a href="/tags/bug/" target="_blank">
+                        <span class="chip bg-color">bug</span>
                     </a>
                     
                 </div>
@@ -1143,7 +1159,7 @@ const rawData =
 
             
                 &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
-                <span class="white-color">23.3k</span>
+                <span class="white-color">28.6k</span>
             
 
             
