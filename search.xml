@@ -1,6 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>小米手机不使用第三方recovery ROOT教程</title>
+    <url>/2020/11/23/%E5%85%B6%E4%BB%96%E5%88%86%E4%BA%AB/root-xiaomi-device-without-recovery/</url>
+    <content><![CDATA[<p>上个月我买了一部小米10至尊纪念版，由于小米自带的换机软件不支持一些应用数据的还原，所以我需要使用钛备份来还原应用和数据。但是钛备份需要root才能用，因为机器刚出没多久，第三方的recovery也没有，所以需要找到一种不使用recovery来获取root权限的方法。经过仔细寻找之后，我在一个国外网站找到了不使用recovery获取root权限的方法（<a href="https://www.getdroidtips.com/root-xiaomi-mi-10-ultra/" target="_blank" rel="noopener">原始教程地址</a>），下面是中文详细教程：</p>
+<p>1、先去官网申请解锁bootloader，等待168小时后解锁手机，解锁时会清空数据，注意备份应用和文件。<br>2、在电脑上下载和你手机版本号相同的卡刷包rom，版本一定要一致！使用解压软件打开提取里面的boot.img文件，并用数据线传到手机里。官网rom下载地址: <a href="http://www.miui.com/download.html" target="_blank" rel="noopener">http://www.miui.com/download.html</a></p>
+<p><img src="https://images.liyangzone.com/article_img/root-xiaomi-device/Image036.png" alt></p>
+<p>3、手机上安装<code>Magisk Manager</code>APP ,然后打开<code>安装</code>按钮，之后选择最后一项<code>选择并修补一个文件</code>，然后会弹出文件选择框，选择之前复制到手机上的<code>boot.img</code>文件，选中文件之后点<code>开始</code>，按钮，接下来<code>Magisk Manager</code>APP会下载一个压缩包文件并制作一个打上root补丁的img文件，稍等片刻就会制作好，制作好的文件在如下位置，之后将该文件复制到电脑。</p>
+<p><img src="https://images.liyangzone.com/article_img/root-xiaomi-device/Screenshot1.jpg" alt></p>
+<p><img src="https://images.liyangzone.com/article_img/root-xiaomi-device/Screenshot2.jpg" alt></p>
+<p><img src="https://images.liyangzone.com/article_img/root-xiaomi-device/Screenshot3.jpg" alt></p>
+<p>4、按音量减+开机键进入fastboot模式，连接电脑，使用fastboot刷入打好补丁的img文件，命令为 <code>fastboot flash boot magisk_patched.img</code></p>
+<p>完成之后使用<code>fastboot reboot</code>命令重启手机，开机之后手机root成功。</p>
+<p><img src="https://images.liyangzone.com/article_img/root-xiaomi-device/Image039.png" alt></p>
+<p><img src="https://images.liyangzone.com/article_img/root-xiaomi-device/Screenshot4.jpg" alt></p>
+<p>PS:</p>
+<ul>
+<li>Magisk Manager官网下载地址：<a href="https://magiskmanager.com，注意不要使用小米自带浏览器下载，会被替换成其他垃圾软件。" target="_blank" rel="noopener">https://magiskmanager.com，注意不要使用小米自带浏览器下载，会被替换成其他垃圾软件。</a></li>
+<li>因为Magisk服务器被墙，步骤三使用<code>Magisk Manager</code>APP制作补丁img文件的过程需要科学上网，不然制作不成功。</li>
+<li>fastboot工具在小米解锁软件的目录里可以找到，记得安装驱动。</li>
+<li>如果root之后系统有更新的话先不要更新，先刷入原版boot.img文件后才能更新成功，更新成功之后再按本教教程操作一遍即可（下载最新版本ROM&gt;提取boot.img&gt;打补丁&gt;刷入手机）。</li>
+<li>理论上此方法适用于所有小米手机，稳定版rom也能root。</li>
+</ul>
+]]></content>
+      <categories>
+        <category>其他分享</category>
+      </categories>
+      <tags>
+        <tag>MIUI  小米手机ROOT</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>sync-player：使用websocket实现异地同步看视频</title>
+    <url>/2020/09/20/%E5%89%8D%E7%AB%AF/sync-player/</url>
+    <content><![CDATA[<p>前段时间我有这样一个需求，想和一个异地的人一起看电影，先后在网上找了一些方案，不过那几个方案都有一些缺点</p>
+<ul>
+<li><p><strong>coplay</strong> 一个浏览器插件，只能播放各大视频网站的视频，视频资源有限，我想要看的视频没有，比如一些经典电影和美剧之类</p>
+</li>
+<li><p><strong>微光APP</strong> 还是上面的问题，而且只有手机端</p>
+</li>
+<li><p><strong>向日葵等远程桌面</strong> 受限于网络问题，卡顿很严重，体验不好</p>
+</li>
+</ul>
+<p>除了这几个方案之外我也尝试了直播的方案：</p>
+<ul>
+<li><p><strong>通过B站等直播平台进行直播，</strong> 缺点：有几十秒的延迟，而且不能保证两端播放进度同步，总会差个几秒，而且直播对上传带宽要求较高。</p>
+</li>
+<li><p><strong>自建直播平台，</strong>，我首先使用了腾讯云上的<code>云直播</code>解决方案，后来我又在自己的云服务器上使用<code>nginx+rtmp</code>搭建了直播服务，两个方案延迟差不多，大概在5-10秒，但还是无法解决两端视频不同步问题。</p>
+</li>
+</ul>
+<p>作为一个切图仔，对用户体验还是有一定追求的，我是一个下载党，看电影必须下载到本地看，基本不看视频网站上的玩意</p>
+<p>那么有没有能实现同步播放本地文件的方案呢，答案是肯定的，经过我的一些摸索和研究，我实现了本地文件的同步播放，同时支持PC和手机端，而且还支持外挂字幕等高级功能，如何实现请往下看。</p>
+<h1 id="功能介绍-amp-特性："><a href="#功能介绍-amp-特性：" class="headerlink" title="功能介绍&amp;特性："></a>功能介绍&amp;特性：</h1><p>一个可以同步看视频的播放器，可用于异地同步观影、观剧，支持多人同时观看。<br>本项目有两个版本，web版运行在浏览器上，可跨平台，不限操作系统、设备，功能简单适用于要求不高的用户。还有基于SPlayer(射手影音)DIY的客户端版本(windows、MAC)，播放4K高清文件、外挂字幕，统统没问题。</p>
+<h1 id="演示demo"><a href="#演示demo" class="headerlink" title="演示demo:"></a>演示demo:</h1><p>web版同步效果</p>
+<p><img src="https://s1.ax1x.com/2020/09/19/wI60je.gif" alt="wI60je.gif"></p>
+<p>客户端与web版同步效果</p>
+<p><img src="https://s1.ax1x.com/2020/09/20/wofbYd.gif" alt="wofbYd.gif"></p>
+<h1 id="原理："><a href="#原理：" class="headerlink" title="原理："></a>原理：</h1><p>基于websocket实现，与一些用websocket实现的聊天室类似，只不过这个聊天室里的消息换成了播放暂停的动作和时间信息，客户端收到消息后执行相应的动作:播放、暂停、快进，以达到同时播放的效果。</p>
+<h1 id="项目所用到的"><a href="#项目所用到的" class="headerlink" title="项目所用到的"></a>项目所用到的</h1><ul>
+<li>node.js </li>
+<li>socket.io</li>
+<li>HTML5 video API </li>
+<li>vue.js</li>
+</ul>
+<h1 id="如何使用："><a href="#如何使用：" class="headerlink" title="如何使用："></a>如何使用：</h1><p>本项目的核心是websocket，所以至少需要一台服务器提供websocket服务，websocket服务可以自己部署，可以使用第三方平台GoEasy提供的websocket服务(可免费使用两个月)。</p>
+<p>1、自己部署：websocket服务器可以是一台具有公网IP的云服务器，也可以是一台具有公网IP的普通PC，没有公网IP也可以。你也可以使用zerotier或其他VPN工具将两台设备组成一个大局域网，让它们能互相通信。websocket服务器操作系统不限，只要有node.js环境。</p>
+<p>websocket服务端部署方法：安装node.js环境，将server目录移动到服务器上，进入server目录，执行以下命令</p>
+<p>安装项目依赖包</p>
+<pre class="line-numbers language-bash"><code class="language-bash">
+<span class="token comment" spellcheck="true"># 安装项目依赖包</span>
+
+<span class="token function">npm</span> <span class="token function">install</span> 
+
+<span class="token comment" spellcheck="true"># 启动websocket服务</span>
+
+node index.js
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>2、使用GoEasy的websocket服务</p>
+<p>注册GoEasy开发者账号并创建一个应用，获得appkey，复制到本项目相应位置即可。</p>
+<p>GoEasy官网：<a href="https://www.goeasy.io" target="_blank" rel="noopener">https://www.goeasy.io</a></p>
+<p>无论是使用哪种websocket服务都可以，本项目写了两套代码，只需将不用的那套注释掉即可(默认GoEasy)。</p>
+<p>除了websocket服务器之外，还需要两个http服务端，一个是web服务端(提供html、css、js等文件的访问)，一个是视频服务端(提供视频文件访问)。</p>
+<p>你可以将web服务部端署到以下位置：</p>
+<ul>
+<li>具有公网IP的服务器</li>
+<li>github-pages或国内的码云提供的静态web服务</li>
+<li>localhost(本地服务器)，同一个局域网内的设备访问该服务器内网IP</li>
+</ul>
+<p>视频文件只需一个视频地址就行，也有以下几种选择：</p>
+<ul>
+<li>具有公网IP的服务器</li>
+<li>localhost(本地服务器)，同一个局域网内的设备访问该服务器内网IP</li>
+<li>第三方视频地址</li>
+</ul>
+<p><img src="https://s1.ax1x.com/2020/09/17/wfntdU.png" alt="wfntdU.png"></p>
+<p>使用场景1：云服务器带宽足够大(至少要大于播放视频的码率)，云服务器既可以作为websocket服务端，也可以作为http服务端。上图中所有设备都访问云服务器的ip或域名。</p>
+<p>使用场景2：云服务器的带宽很小，这时候它只能作为websocket服务端，这时可以用上图中的PC1和PC2作为http服务端，PC1和PHONE1在一个内网访问PC1的内网IP，PC2和PHONE2在一个内网访问PC2的内网IP，PC3可作为自己的http服务端，PHONE3若是有提供视频文件的服务端，也可以使用。</p>
+<p><img src="https://s1.ax1x.com/2020/09/17/wfnYZT.png" alt="wfnYZT.png"></p>
+<p>使用场景3：需要使用zerotier或其他VPN工具将异地设备组成一个大局域网，其中任意一台PC均可作为websocket服务端和http服务端(需要上传带宽足够大)。上图中各设备都访问那台PC的内网ip即可。</p>
+<p>最简单的使用方法，下载nginx开启一个本地服务器，下载本项目client文件夹放到到nginx根目录里，视频文件也放到里面。注册goeasy开发者账号并创建一个应用，获得appkey，并填入到appkey到代码(<code>script/main.js</code>)相应位置。然后浏览器打开 <code>192.168.3.58/client/</code>，填入你的视频地址<code>192.168.3.58/movie/xxx.mp4</code>或网络视频地址，对方也这样操作一番，即可实现同步播放视频，不过这种方法只能白嫖两个月。</p>
+<p>web版本的功能比较简单，而且受限于网络问题，快进之类的操作需要缓冲一段时间。如果你不满足web版功能，对用户体验有更高的要求，如支持更多文件格式、播放高清本地视频文件、外挂字幕等，我也找到了另一种方式来满足你的需求。</p>
+<p>那就是DIY一个开源的播放器的源码：SPlayer(射手影音)。</p>
+<p>射手影音官网：<a href="https://splayer.org" target="_blank" rel="noopener">https://splayer.org</a></p>
+<p>源码地址：<a href="https://github.com/chiflix/splayerx" target="_blank" rel="noopener">https://github.com/chiflix/splayerx</a></p>
+<p>在以<strong>electron + 播放器</strong>为关键字一番搜索之后，我找到了这个基于electron实现的开源播放器，并下载了源码来研究。</p>
+<p>经过一番研究之后，我找到了控制视频播放、暂停、快进的代码位置，并将控制同步的代码移植了进去，从而也实现了同步功能，并且与web版兼容。</p>
+<p>具体方法请看：<a href="https://github.com/liyang5945/sync-player/blob/master/how-to-modify-splayer.md" target="_blank" rel="noopener">修改教程</a></p>
+<p>本项目部分图标样式来源于此项目: <a href="https://github.com/Justineo/coplay" target="_blank" rel="noopener">coplay</a> </p>
+<p>本项目github地址：<a href="https://github.com/liyang5945/sync-player" target="_blank" rel="noopener">点击前往</a> ，欢迎⭐⭐⭐STAR⭐⭐⭐</p>
+]]></content>
+      <categories>
+        <category>技术分享</category>
+      </categories>
+      <tags>
+        <tag>websocket</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>使用粘性定位(position:sticky)实现固定表头、固定列的表格组件(Vue、React)</title>
     <url>/2020/08/15/%E5%89%8D%E7%AB%AF/draggable-fixed-header-table/</url>
     <content><![CDATA[<p>最近重构的项目中有这样一个页面，一个固定表头和列的表格，表格列数较多，大概有60多列，200多条数据，而且表格需要实现拖拽滚动功能。<br>原页面的表格是用的一个比较老旧的表格插件实现，拖拽滚动是用iScroll.js实现的，性能很差，即使每页只有二、三十条数据，拖拽起来也严重卡顿。我首先使用了element-ui自带的的table组件实现了拖拽滚动的功能，性能稍微比老页面强了一点，每页50条数据时卡顿不明显，超过100条数据时有才有卡顿感。然而我对这样的性能也不是很满意，就研究了下el-table固定表头和列的实现方式，发现el-table实现固定列的方式比较坑，它是渲染了两个完整的table，然后把固定列的表格宽度写死绝对定位到左侧部分，把另一个表格盖住来实现的。当数据量较多的时候会非常卡顿。<br>后来我又研究了下ant-design里面的table组件固定列的实现方式，发现ant-design的实现方式跟element-ui不一样，它不是渲染两个table，而是基于一个CSS3属性来实现的，那就是 <code>position: sticky</code>。<br>sticky直译是粘性定位，MDN上是这样介绍的：</p>
@@ -620,7 +736,7 @@ fastboot oem device-info         :查看解锁状态<span aria-hidden="true" cla
 <h4 id="刷机"><a href="#刷机" class="headerlink" title="刷机"></a>刷机</h4><p>刷机包从官网下载稳定版即可,<a href="http://c.mi.com/miuidownload/index" target="_blank" rel="noopener">国际版MIUI下载地址</a>，这里有个坑就是MIUI11的安卓版本是9，安卓9的data分区是启用强制加密的，再次进入recovery时就会提示解锁data分区，让输入密码，并且密码也不是锁屏密码，这个坑后来导致我手机资料全清，如何取消强制加密后面会说。</p>
 <p>刷完机还有个坑就是官方系统会在重启时将第三方recovery替换掉，等下系统初始化完成后，再刷一遍TWRP recovery，重启时会有禁止恢复官方recovery的选项。</p>
 <h4 id="ROOT系统"><a href="#ROOT系统" class="headerlink" title="ROOT系统"></a>ROOT系统</h4><p>最新的安卓ROOT工具是Magisk: <a href="https://github.com/topjohnwu/Magisk/releases" target="_blank" rel="noopener">Magisk gitHub发布地址</a>，下载zip安装包，跟刷机一样，用recovery刷入，刷完后手机里会出现Magisk Manager APP(ROOT权限管理工具)。</p>
-<h4 id="安装edxposed框架"><a href="#安装edxposed框架" class="headerlink" title="安装edxposed框架"></a>安装edxposed框架</h4><p>这里要安装两个插件：Riru-core和Riru-EdXposed。可以在Magisk Manager里面搜索下载安装，也可以手动下载zip包用Magisk Managery安装。Riru-EdXposed一般选择YAHFA版本(稳定版)。</p>
+<h4 id="安装edxposed框架"><a href="#安装edxposed框架" class="headerlink" title="安装edxposed框架"></a>安装edxposed框架</h4><p>这里要安装两个插件：Riru-core和Riru-EdXposed。可以在Magisk Manager里面搜索下载安装，也可以手动下载zip包用Magisk Manager安装。Riru-EdXposed一般选择YAHFA版本(稳定版)。</p>
 <p><a href="https://github.com/RikkaApps/Riru/releases" target="_blank" rel="noopener">Riru-Core github发布地址</a><br><a href="https://github.com/ElderDrivers/EdXposed/releases" target="_blank" rel="noopener">Riru-EdXposed github发布地址</a></p>
 <p><img src="https://images.liyangzone.com/article_img/%E5%85%B6%E4%BB%96%E5%88%86%E4%BA%AB/MIUI%E5%9B%BD%E9%99%85%E7%89%88%E6%8A%98%E8%85%BE/1.jpg" alt></p>
 <p>然后安装EdXposed Manager APP：<a href="https://github.com/ElderDrivers/EdXposedManager/releases" target="_blank" rel="noopener">github发布地址</a>。</p>
@@ -1140,8 +1256,8 @@ npm install file-saver --save<span aria-hidden="true" class="line-numbers-rows">
       </categories>
       <tags>
         <tag>hexo</tag>
-        <tag>教程</tag>
         <tag>Travis-CI</tag>
+        <tag>教程</tag>
       </tags>
   </entry>
   <entry>
@@ -1375,7 +1491,7 @@ column-span 为 all 的元素始终会创建一个新的BFC，即使该元素没
 <p>下载链接：<a href="http://msdn.itellyou.cn/" target="_blank" rel="noopener">msdn.itellyou.cn</a>,搜索 <code>win ltsb</code> 或 <code>win ltsc</code> 下载你需要的版本。这个网站上下载的都是官方原版ISO文件，未经任何第三方修改。</p>
 <h3 id="本人常用的软件推荐"><a href="#本人常用的软件推荐" class="headerlink" title="本人常用的软件推荐"></a>本人常用的软件推荐</h3><ul>
 <li>聊天软件：<a href="https://office.qq.com/" target="_blank" rel="noopener">TIM</a> QQ企业版，没有垃圾广告</li>
-<li>浏览器：<a href="https://www.google.cn/chrome/" target="_blank" rel="noopener">chrome</a> <a href="http://www.firefox.com.cn/" target="_blank" rel="noopener">firefox</a>  Chrome主力，firefox备用</li>
+<li>浏览器：<a href="https://www.google.cn/chrome/" target="_blank" rel="noopener">chrome</a> <a href="http://www.firefox.com.cn/" target="_blank" rel="noopener">firefox</a>  Chrome为开发使用，日常使用firefox，注意firefox不要下载到国内版本的firefox，会有广告，而且账号与国际版不通用。推荐使用firefox esr版本（长期支持版本，Extended Support Release，简称“ESR”），下载地址：<a href="https://www.mozilla.org/en-US/firefox/enterprise/" target="_blank" rel="noopener">https://www.mozilla.org/en-US/firefox/enterprise/</a></li>
 <li>输入法：<a href="https://shurufa.baidu.com/" target="_blank" rel="noopener">百度输入法</a> 虽然大家一直在骂百度，不过他的输入法还是不错的，没有广告啥的</li>
 <li>视频播放器：<a href="https://daumpotplayer.com/download/" target="_blank" rel="noopener">PotPlayer</a> 看电影我都是下到本地观看，一直在用这个播放器</li>
 <li>下载工具：μTorrent 和 迅雷去广告版 以前用过μTorrent，发现下载不动资源，其实是使用的姿势不对，设置一下tracker，速度飞起，<a href>前往设置教程(待写)</a></li>
@@ -1384,6 +1500,7 @@ column-span 为 all 的元素始终会创建一个新的BFC，即使该元素没
 </ul>
 <h3 id="chrome浏览器插件推荐"><a href="#chrome浏览器插件推荐" class="headerlink" title="chrome浏览器插件推荐"></a>chrome浏览器插件推荐</h3><ul>
 <li>Adblock Plus 广告屏蔽插件，可屏蔽大部分网页广告，从chrome商店里安装（需要梯子)</li>
+<li>Proxy SwitchyOmega 浏览器切换代理插件，科学上网必备</li>
 <li><a href="https://addoncrop.com/youtube_video_downloader/" target="_blank" rel="noopener">YouTube Video Downloader</a> YouTube视频下载工具，第三方chrome插件，不在chrome商店里，本地下载安装</li>
 </ul>
 <h3 id="工作相关软件"><a href="#工作相关软件" class="headerlink" title="工作相关软件"></a>工作相关软件</h3><ul>
@@ -1729,8 +1846,8 @@ hexo<span class="token punctuation">.</span>extend<span class="token punctuation
       </categories>
       <tags>
         <tag>hexo</tag>
-        <tag>相册</tag>
         <tag>教程</tag>
+        <tag>相册</tag>
         <tag>加密</tag>
       </tags>
   </entry>
@@ -2073,8 +2190,8 @@ http://imgs.liyangzone.com/2017/IMG_20170508_163002.jpg!w75<span aria-hidden="tr
       </categories>
       <tags>
         <tag>hexo</tag>
-        <tag>相册</tag>
         <tag>教程</tag>
+        <tag>相册</tag>
       </tags>
   </entry>
   <entry>
@@ -2152,7 +2269,7 @@ http://imgs.liyangzone.com/2017/IMG_20170508_163002.jpg!w75<span aria-hidden="tr
 <pre class="line-numbers language-markdown"><code class="language-markdown">&lt;http://example.com/>
 <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>address@example.com</span><span class="token punctuation">></span></span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 <p>view</p>
-<p><a href="http://example.com/" target="_blank" rel="noopener">http://example.com/</a><br><a href="mailto:&#x61;&#x64;&#x64;&#114;&#x65;&#x73;&#x73;&#x40;&#x65;&#x78;&#x61;&#109;&#x70;&#x6c;&#101;&#x2e;&#99;&#x6f;&#x6d;" target="_blank" rel="noopener">&#x61;&#x64;&#x64;&#114;&#x65;&#x73;&#x73;&#x40;&#x65;&#x78;&#x61;&#109;&#x70;&#x6c;&#101;&#x2e;&#99;&#x6f;&#x6d;</a></p>
+<p><a href="http://example.com/" target="_blank" rel="noopener">http://example.com/</a><br><a href="mailto:&#x61;&#100;&#100;&#x72;&#x65;&#115;&#115;&#64;&#x65;&#120;&#97;&#x6d;&#x70;&#108;&#x65;&#46;&#x63;&#111;&#109;" target="_blank" rel="noopener">&#x61;&#100;&#100;&#x72;&#x65;&#115;&#115;&#64;&#x65;&#120;&#97;&#x6d;&#x70;&#108;&#x65;&#46;&#x63;&#111;&#109;</a></p>
 <hr>
 <h4 id="4-锚点"><a href="#4-锚点" class="headerlink" title="4. 锚点"></a>4. 锚点</h4><p>网页中，锚点其实就是页内超链接，也就是链接本文档内部的某些元素，实现当前页面中的跳转。比如我这里写下一个锚点，点击回到目录，就能跳转到目录。 在目录中点击这一节，就能跳过来。还有下一节的注脚。这些根本上都是用锚点来实现的。</p>
 <p>注意： </p>
@@ -2562,13 +2679,8 @@ var object ={
     <content><![CDATA[]]></content>
   </entry>
   <entry>
-    <title>2017</title>
-    <url>/galleries/2017/index.html</url>
-    <content><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title>2018</title>
-    <url>/galleries/2018/index.html</url>
+    <title>2019</title>
+    <url>/galleries/2019/index.html</url>
     <content><![CDATA[]]></content>
   </entry>
   <entry>
@@ -2577,8 +2689,8 @@ var object ={
     <content><![CDATA[]]></content>
   </entry>
   <entry>
-    <title>private</title>
-    <url>/galleries/private/index.html</url>
+    <title>2018</title>
+    <url>/galleries/2018/index.html</url>
     <content><![CDATA[]]></content>
   </entry>
   <entry>
@@ -2587,8 +2699,13 @@ var object ={
     <content><![CDATA[]]></content>
   </entry>
   <entry>
-    <title>2019</title>
-    <url>/galleries/2019/index.html</url>
+    <title>2017</title>
+    <url>/galleries/2017/index.html</url>
+    <content><![CDATA[]]></content>
+  </entry>
+  <entry>
+    <title>private</title>
+    <url>/galleries/private/index.html</url>
     <content><![CDATA[]]></content>
   </entry>
 </search>

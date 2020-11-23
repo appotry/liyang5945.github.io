@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-08-15T04:06:24.109Z</updated>
+  <updated>2020-11-23T14:19:49.582Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,60 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>小米手机不使用第三方recovery ROOT教程</title>
+    <link href="http://yoursite.com/2020/11/23/%E5%85%B6%E4%BB%96%E5%88%86%E4%BA%AB/root-xiaomi-device-without-recovery/"/>
+    <id>http://yoursite.com/2020/11/23/其他分享/root-xiaomi-device-without-recovery/</id>
+    <published>2020-11-23T13:00:00.000Z</published>
+    <updated>2020-11-23T14:19:49.582Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;上个月我买了一部小米10至尊纪念版，由于小米自带的换机软件不支持一些应用数据的还原，所以我需要使用钛备份来还原应用和数据。但是钛备份需要root才能用，因为机器刚出没多久，第三方的recovery也没有，所以需要找到一种不使用recovery来获取root权限的方法。经过仔
+        
+      
+    
+    </summary>
+    
+      <category term="其他分享" scheme="http://yoursite.com/categories/%E5%85%B6%E4%BB%96%E5%88%86%E4%BA%AB/"/>
+    
+    
+      <category term="MIUI  小米手机ROOT" scheme="http://yoursite.com/tags/MIUI-%E5%B0%8F%E7%B1%B3%E6%89%8B%E6%9C%BAROOT/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>sync-player：使用websocket实现异地同步看视频</title>
+    <link href="http://yoursite.com/2020/09/20/%E5%89%8D%E7%AB%AF/sync-player/"/>
+    <id>http://yoursite.com/2020/09/20/前端/sync-player/</id>
+    <published>2020-09-20T07:00:00.000Z</published>
+    <updated>2020-11-23T14:21:21.627Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;前段时间我有这样一个需求，想和一个异地的人一起看电影，先后在网上找了一些方案，不过那几个方案都有一些缺点&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;coplay&lt;/strong&gt;
+        
+      
+    
+    </summary>
+    
+      <category term="技术分享" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/"/>
+    
+    
+      <category term="websocket" scheme="http://yoursite.com/tags/websocket/"/>
+    
+  </entry>
   
   <entry>
     <title>使用粘性定位(position:sticky)实现固定表头、固定列的表格组件(Vue、React)</title>
@@ -83,7 +137,7 @@
     <link href="http://yoursite.com/2020/04/07/%E5%85%B6%E4%BB%96%E5%88%86%E4%BA%AB/%E5%B0%8F%E7%B1%B3%E6%89%8B%E6%9C%BA%E5%88%B7MIUI%E5%9B%BD%E9%99%85%E7%89%88%E6%8A%98%E8%85%BE%E8%AE%B0%E5%BD%95/"/>
     <id>http://yoursite.com/2020/04/07/其他分享/小米手机刷MIUI国际版折腾记录/</id>
     <published>2020-04-07T02:00:00.000Z</published>
-    <updated>2020-04-07T03:57:22.344Z</updated>
+    <updated>2020-11-23T13:51:52.864Z</updated>
     
     <summary type="html">
     
@@ -217,9 +271,9 @@
     
       <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
     
-      <category term="教程" scheme="http://yoursite.com/tags/%E6%95%99%E7%A8%8B/"/>
-    
       <category term="Travis-CI" scheme="http://yoursite.com/tags/Travis-CI/"/>
+    
+      <category term="教程" scheme="http://yoursite.com/tags/%E6%95%99%E7%A8%8B/"/>
     
   </entry>
   
@@ -317,7 +371,7 @@
     <link href="http://yoursite.com/2019/08/28/%E4%B8%AA%E4%BA%BA%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/"/>
     <id>http://yoursite.com/2019/08/28/个人常用软件推荐/</id>
     <published>2019-08-28T09:45:30.000Z</published>
-    <updated>2020-01-06T13:55:47.560Z</updated>
+    <updated>2020-11-23T14:36:06.891Z</updated>
     
     <summary type="html">
     
@@ -395,9 +449,9 @@
     
       <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
     
-      <category term="相册" scheme="http://yoursite.com/tags/%E7%9B%B8%E5%86%8C/"/>
-    
       <category term="教程" scheme="http://yoursite.com/tags/%E6%95%99%E7%A8%8B/"/>
+    
+      <category term="相册" scheme="http://yoursite.com/tags/%E7%9B%B8%E5%86%8C/"/>
     
       <category term="加密" scheme="http://yoursite.com/tags/%E5%8A%A0%E5%AF%86/"/>
     
@@ -422,9 +476,9 @@
     
       <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
     
-      <category term="相册" scheme="http://yoursite.com/tags/%E7%9B%B8%E5%86%8C/"/>
-    
       <category term="教程" scheme="http://yoursite.com/tags/%E6%95%99%E7%A8%8B/"/>
+    
+      <category term="相册" scheme="http://yoursite.com/tags/%E7%9B%B8%E5%86%8C/"/>
     
   </entry>
   
