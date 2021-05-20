@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-11-23T14:37:34.803Z</updated>
+  <updated>2021-05-09T14:58:32.579Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>最美的风景在路上：2021千岛湖骑行露营记</title>
+    <link href="http://yoursite.com/2021/05/08/2021-qiandao-lake-riding-notes/"/>
+    <id>http://yoursite.com/2021/05/08/2021-qiandao-lake-riding-notes/</id>
+    <published>2021-05-08T12:30:00.000Z</published>
+    <updated>2021-05-09T14:58:32.579Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;2021年五一我又去千岛湖浪了一波，这次出行我从年后就开始规划了，为了这次出行我做了许多的准备工作：更换了更加舒适的坐垫，购入了一个休息把提升长途骑行时手臂的舒适度，升级了更加轻量化的帐篷，最后又定制了一个前置货架，用来放帐篷和睡袋等物品。&lt;/p&gt;
+&lt;p&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="生活记录" scheme="http://yoursite.com/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/"/>
+    
+    
+      <category term="骑行" scheme="http://yoursite.com/tags/%E9%AA%91%E8%A1%8C/"/>
+    
+      <category term="游记" scheme="http://yoursite.com/tags/%E6%B8%B8%E8%AE%B0/"/>
+    
+  </entry>
   
   <entry>
     <title>小米手机不使用第三方recovery ROOT教程</title>
@@ -460,7 +489,7 @@
     <link href="http://yoursite.com/2019/10/08/2019%E5%9B%BD%E5%BA%86%E9%AA%91%E6%B8%B8%E8%AE%B0/"/>
     <id>http://yoursite.com/2019/10/08/2019国庆骑游记/</id>
     <published>2019-10-08T14:30:00.000Z</published>
-    <updated>2020-02-28T06:36:09.613Z</updated>
+    <updated>2021-05-09T13:30:48.827Z</updated>
     
     <summary type="html">
     
@@ -519,7 +548,7 @@
     <link href="http://yoursite.com/2019/08/22/%E9%9D%92%E6%B5%B7%E6%B9%96%E9%AA%91%E8%A1%8C%E8%AE%B0/"/>
     <id>http://yoursite.com/2019/08/22/青海湖骑行记/</id>
     <published>2019-08-22T02:30:00.000Z</published>
-    <updated>2020-02-28T08:05:24.952Z</updated>
+    <updated>2021-05-09T14:32:26.005Z</updated>
     
     <summary type="html">
     
@@ -548,7 +577,7 @@
     <link href="http://yoursite.com/2019/07/30/%E4%BD%BF%E7%94%A8AES%E7%AE%97%E6%B3%95%E5%8A%A0%E5%AF%86Hexo%E7%9B%B8%E5%86%8C/"/>
     <id>http://yoursite.com/2019/07/30/使用AES算法加密Hexo相册/</id>
     <published>2019-07-30T03:30:00.000Z</published>
-    <updated>2020-02-28T06:32:37.221Z</updated>
+    <updated>2021-05-09T14:32:37.978Z</updated>
     
     <summary type="html">
     
@@ -572,31 +601,6 @@
       <category term="相册" scheme="http://yoursite.com/tags/%E7%9B%B8%E5%86%8C/"/>
     
       <category term="加密" scheme="http://yoursite.com/tags/%E5%8A%A0%E5%AF%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>hexo博客添加一级分类相册功能</title>
-    <link href="http://yoursite.com/2019/07/22/hexo%E5%8D%9A%E5%AE%A2%E6%B7%BB%E5%8A%A0%E4%B8%80%E7%BA%A7%E5%88%86%E7%B1%BB%E7%9B%B8%E5%86%8C/"/>
-    <id>http://yoursite.com/2019/07/22/hexo博客添加一级分类相册/</id>
-    <published>2019-07-22T02:43:47.000Z</published>
-    <updated>2020-02-28T08:03:57.883Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;最近在折腾自己的博客，在折腾的过程中也参观了许多大牛的博客，发现不少博主都有个相册页面，我也想在自己的博客上面加个相册功能。但是我现在用的这个主题呢，虽然有个相册的功能，但是我感觉有点简陋，点击照片是个弹出的轮播图，照片多了的话还要一张一张的翻。如下图：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://images.liyangzone.com/article_img/%E6%8A%80%E6%9C%AF%E7%9B%B8%E5%85%B3/%E6%B7%BB%E5%8A%A0%E7%9B%B8%E5%86%8C%E6%95%99%E7%A8%8B/2019-07-22-01.jpg&quot; alt&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="技术分享" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/"/>
-    
-    
-      <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
-    
-      <category term="教程" scheme="http://yoursite.com/tags/%E6%95%99%E7%A8%8B/"/>
-    
-      <category term="相册" scheme="http://yoursite.com/tags/%E7%9B%B8%E5%86%8C/"/>
     
   </entry>
   
