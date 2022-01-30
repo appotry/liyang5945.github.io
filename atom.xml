@@ -1,0 +1,603 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>星空无限</title>
+  
+  <subtitle>路漫漫其修远兮，吾将上下而求索</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2022-01-30T13:59:58.212Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>liyang</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用nginx修改接口响应头解决跨域问题</title>
+    <link href="http://yoursite.com/2021/10/21/%E5%89%8D%E7%AB%AF/solve-cors-problem-width-nginx/"/>
+    <id>http://yoursite.com/2021/10/21/前端/solve-cors-problem-width-nginx/</id>
+    <published>2021-10-21T11:30:00.000Z</published>
+    <updated>2022-01-30T13:59:58.212Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;跨域这个问题对于前端来说是老生常谈了，搜索一下相关问题就会出现一堆解决方案，有的方法是通过使用nginx反向代理来解决跨域问题，不过这种方是只存在两个域的情况下，比如说我们的前端页面发布在A服务器上，然后接口是B服务器提供，我们在A服务器上通过nginx反向代理请求B服务器
+        
+      
+    
+    </summary>
+    
+      <category term="技术分享" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/"/>
+    
+    
+      <category term="nginx" scheme="http://yoursite.com/tags/nginx/"/>
+    
+      <category term="跨域" scheme="http://yoursite.com/tags/%E8%B7%A8%E5%9F%9F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>最美的风景在路上：2021千岛湖骑行露营记</title>
+    <link href="http://yoursite.com/2021/05/08/2021-qiandao-lake-riding-notes/"/>
+    <id>http://yoursite.com/2021/05/08/2021-qiandao-lake-riding-notes/</id>
+    <published>2021-05-08T12:30:00.000Z</published>
+    <updated>2022-01-30T13:59:58.207Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;2021年五一我又去千岛湖浪了一波，这次出行我从年后就开始规划了，为了这次出行我做了许多的准备工作：更换了更加舒适的坐垫，购入了一个休息把提升长途骑行时手臂的舒适度，升级了更加轻量化的帐篷，最后又定制了一个前置货架，用来放帐篷和睡袋等物品。&lt;/p&gt;
+&lt;p&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="生活记录" scheme="http://yoursite.com/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/"/>
+    
+    
+      <category term="骑行" scheme="http://yoursite.com/tags/%E9%AA%91%E8%A1%8C/"/>
+    
+      <category term="游记" scheme="http://yoursite.com/tags/%E6%B8%B8%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>小米手机不使用第三方recovery ROOT教程</title>
+    <link href="http://yoursite.com/2020/11/23/%E5%85%B6%E4%BB%96%E5%88%86%E4%BA%AB/root-xiaomi-device-without-recovery/"/>
+    <id>http://yoursite.com/2020/11/23/其他分享/root-xiaomi-device-without-recovery/</id>
+    <published>2020-11-23T13:00:00.000Z</published>
+    <updated>2022-01-30T13:59:58.211Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;上个月我买了一部小米10至尊纪念版，由于小米自带的换机软件不支持一些应用数据的还原，所以我需要使用钛备份来还原应用和数据。但是钛备份需要root才能用，因为机器刚出没多久，第三方的recovery也没有，所以需要找到一种不使用recovery来获取root权限的方法。经过仔
+        
+      
+    
+    </summary>
+    
+      <category term="其他分享" scheme="http://yoursite.com/categories/%E5%85%B6%E4%BB%96%E5%88%86%E4%BA%AB/"/>
+    
+    
+      <category term="MIUI  小米手机ROOT" scheme="http://yoursite.com/tags/MIUI-%E5%B0%8F%E7%B1%B3%E6%89%8B%E6%9C%BAROOT/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>滴水湖骑行露营记</title>
+    <link href="http://yoursite.com/2020/11/16/Drip-lake-riding-notes/"/>
+    <id>http://yoursite.com/2020/11/16/Drip-lake-riding-notes/</id>
+    <published>2020-11-16T12:30:00.000Z</published>
+    <updated>2022-01-30T13:59:58.207Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;上周六是阴历二十九，正值月亏，天气晴朗，我又跑到滴水湖进行了一次露营，只为再看一次纯净的星空。&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://imgchr.com/i/DZqBcD&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;img
+        
+      
+    
+    </summary>
+    
+      <category term="生活记录" scheme="http://yoursite.com/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/"/>
+    
+    
+      <category term="骑行" scheme="http://yoursite.com/tags/%E9%AA%91%E8%A1%8C/"/>
+    
+      <category term="游记" scheme="http://yoursite.com/tags/%E6%B8%B8%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>捡垃圾真香，翻新一台 300 块的 iPhone7</title>
+    <link href="http://yoursite.com/2020/11/12/renew-a-damaged-iphone7/"/>
+    <id>http://yoursite.com/2020/11/12/renew-a-damaged-iphone7/</id>
+    <published>2020-11-12T11:30:00.000Z</published>
+    <updated>2022-01-30T13:59:58.209Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;不久前本垃圾佬忽然想买一台iphone7来玩，买来做什么后面会说。本垃圾佬在闲鱼搜寻数日之后，终于发现了完美的目标，一台仅售300块伊拉克成色的iphone7，卖家描述是这样的：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://imgchr.com/i/BzbLse&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="其他分享" scheme="http://yoursite.com/categories/%E5%85%B6%E4%BB%96%E5%88%86%E4%BA%AB/"/>
+    
+    
+      <category term="折腾" scheme="http://yoursite.com/tags/%E6%8A%98%E8%85%BE/"/>
+    
+      <category term="捡垃圾" scheme="http://yoursite.com/tags/%E6%8D%A1%E5%9E%83%E5%9C%BE/"/>
+    
+      <category term="DIY" scheme="http://yoursite.com/tags/DIY/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>嘉兴九龙山、淀山湖二日游：骑行露营、观海观星、观日出日落</title>
+    <link href="http://yoursite.com/2020/10/26/jiulong-mountain-riding-notes/"/>
+    <id>http://yoursite.com/2020/10/26/jiulong-mountain-riding-notes/</id>
+    <published>2020-10-26T12:30:00.000Z</published>
+    <updated>2022-01-30T13:59:58.209Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;骑行+露营的玩法也是我在几年前就有的想法，不过这个想法直到到去年才得以实施，去年10月份我就买了一些露营装备，并于10月底到滴水湖尝试着露营了一次，不过因为阴天并没有看到日出和星空，比较遗憾。&lt;/p&gt;
+&lt;p&gt;&lt;a
+        
+      
+    
+    </summary>
+    
+      <category term="生活记录" scheme="http://yoursite.com/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/"/>
+    
+    
+      <category term="骑行" scheme="http://yoursite.com/tags/%E9%AA%91%E8%A1%8C/"/>
+    
+      <category term="游记" scheme="http://yoursite.com/tags/%E6%B8%B8%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>十一长途骑行回家的尝试</title>
+    <link href="http://yoursite.com/2020/10/09/ride-bike-go-hometown/"/>
+    <id>http://yoursite.com/2020/10/09/ride-bike-go-hometown/</id>
+    <published>2020-10-09T09:25:30.000Z</published>
+    <updated>2022-01-30T13:59:58.209Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;长途骑行回家的想法，我很早之前就有了，直到九月十几号我才知道今年国庆竟然有8天假。于是我就退掉了回家的车票，准备尝试一下骑行回家。我老家河南周口市，距离上海700km，计划的是四天骑完，不过因为天气原因只骑了两天，后半程乘的高铁。&lt;/p&gt;
+&lt;p&gt;骑的还是死飞车，这辆车是两个
+        
+      
+    
+    </summary>
+    
+      <category term="生活记录" scheme="http://yoursite.com/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/"/>
+    
+    
+      <category term="骑行" scheme="http://yoursite.com/tags/%E9%AA%91%E8%A1%8C/"/>
+    
+      <category term="游记" scheme="http://yoursite.com/tags/%E6%B8%B8%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>sync-player：使用websocket实现异地同步看视频</title>
+    <link href="http://yoursite.com/2020/09/20/%E5%89%8D%E7%AB%AF/sync-player/"/>
+    <id>http://yoursite.com/2020/09/20/前端/sync-player/</id>
+    <published>2020-09-20T07:00:00.000Z</published>
+    <updated>2022-01-30T13:59:58.213Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;前段时间我有这样一个需求，想和一个异地的人一起看电影，先后在网上找了一些方案，不过那几个方案都有一些缺点&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;coplay&lt;/strong&gt;
+        
+      
+    
+    </summary>
+    
+      <category term="技术分享" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/"/>
+    
+    
+      <category term="websocket" scheme="http://yoursite.com/tags/websocket/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用粘性定位(position:sticky)实现固定表头、固定列的表格组件(Vue、React)</title>
+    <link href="http://yoursite.com/2020/08/15/%E5%89%8D%E7%AB%AF/draggable-fixed-header-table/"/>
+    <id>http://yoursite.com/2020/08/15/前端/draggable-fixed-header-table/</id>
+    <published>2020-08-15T03:00:00.000Z</published>
+    <updated>2022-01-30T13:59:58.212Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;最近重构的项目中有这样一个页面，一个固定表头和列的表格，表格列数较多，大概有60多列，200多条数据，而且表格需要实现拖拽滚动功能。&lt;br&gt;原页面的表格是用的一个比较老旧的表格插件实现，拖拽滚动是用iScroll.js实现的，性能很差，即使每页只有二、三十条数据，拖拽起来也
+        
+      
+    
+    </summary>
+    
+      <category term="技术分享" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/"/>
+    
+    
+      <category term="vue" scheme="http://yoursite.com/tags/vue/"/>
+    
+      <category term="react" scheme="http://yoursite.com/tags/react/"/>
+    
+      <category term="CSS" scheme="http://yoursite.com/tags/CSS/"/>
+    
+      <category term="表格" scheme="http://yoursite.com/tags/%E8%A1%A8%E6%A0%BC/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>重拾DIY的乐趣，手工打造一台三屏移动工作站</title>
+    <link href="http://yoursite.com/2020/05/30/%E5%85%B6%E4%BB%96%E5%88%86%E4%BA%AB/%E4%B8%89%E5%B1%8F%E5%B7%A5%E4%BD%9C%E7%AB%99%E6%8A%98%E8%85%BE%E8%AE%B0/"/>
+    <id>http://yoursite.com/2020/05/30/其他分享/三屏工作站折腾记/</id>
+    <published>2020-05-30T02:00:00.000Z</published>
+    <updated>2022-01-30T13:59:58.211Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img
+        
+      
+    
+    </summary>
+    
+      <category term="其他分享" scheme="http://yoursite.com/categories/%E5%85%B6%E4%BB%96%E5%88%86%E4%BA%AB/"/>
+    
+    
+      <category term="DIY" scheme="http://yoursite.com/tags/DIY/"/>
+    
+      <category term="三屏工作站" scheme="http://yoursite.com/tags/%E4%B8%89%E5%B1%8F%E5%B7%A5%E4%BD%9C%E7%AB%99/"/>
+    
+      <category term="便携显示器" scheme="http://yoursite.com/tags/%E4%BE%BF%E6%90%BA%E6%98%BE%E7%A4%BA%E5%99%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>小米手机刷MIUI国际版折腾记录</title>
+    <link href="http://yoursite.com/2020/04/07/%E5%85%B6%E4%BB%96%E5%88%86%E4%BA%AB/%E5%B0%8F%E7%B1%B3%E6%89%8B%E6%9C%BA%E5%88%B7MIUI%E5%9B%BD%E9%99%85%E7%89%88%E6%8A%98%E8%85%BE%E8%AE%B0%E5%BD%95/"/>
+    <id>http://yoursite.com/2020/04/07/其他分享/小米手机刷MIUI国际版折腾记录/</id>
+    <published>2020-04-07T02:00:00.000Z</published>
+    <updated>2022-01-30T13:59:58.211Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;本人现在使用的是一部红米NOTE5，配置是高通骁龙636+6G+64G，之前用的系统都是MIUI9，一直都没更新过，最近更新了MIUI11，就准备升级一下，更新了国行的系统之后发现广告太多实在受不了。就刷了个MIUI国际版，记录一下折腾的过程。&lt;/p&gt;
+&lt;p&gt;MIUI国际版
+        
+      
+    
+    </summary>
+    
+      <category term="其他分享" scheme="http://yoursite.com/categories/%E5%85%B6%E4%BB%96%E5%88%86%E4%BA%AB/"/>
+    
+    
+      <category term="MIUI国际版" scheme="http://yoursite.com/tags/MIUI%E5%9B%BD%E9%99%85%E7%89%88/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>一个js数组分类求和算法</title>
+    <link href="http://yoursite.com/2020/02/28/%E5%89%8D%E7%AB%AF/%E4%B8%80%E4%B8%AAjs%E6%95%B0%E7%BB%84%E5%88%86%E7%B1%BB%E6%B1%82%E5%92%8C%E7%AE%97%E6%B3%95/"/>
+    <id>http://yoursite.com/2020/02/28/前端/一个js数组分类求和算法/</id>
+    <published>2020-02-28T06:30:00.000Z</published>
+    <updated>2022-01-30T13:59:58.214Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;需求详情：一个数组内有N个元素，元素有类型、名称、数量1、数量2等属性，计算出各类型元素的数量、数量1、数量2的和。&lt;/p&gt;
+&lt;p&gt;实际需求就是做出下图这样一个表格，各类型的合计信息用红色字体显示：&lt;/p&gt;
+&lt;p&gt;&lt;img
+        
+      
+    
+    </summary>
+    
+      <category term="技术分享" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/"/>
+    
+    
+      <category term="JavaScript" scheme="http://yoursite.com/tags/JavaScript/"/>
+    
+      <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用js-xlsx插件导出多级表头excel</title>
+    <link href="http://yoursite.com/2020/02/27/%E5%89%8D%E7%AB%AF/%E4%BD%BF%E7%94%A8js-xlsx%E6%8F%92%E4%BB%B6%E5%AF%BC%E5%87%BA%E5%A4%9A%E7%BA%A7%E8%A1%A8%E5%A4%B4excel/"/>
+    <id>http://yoursite.com/2020/02/27/前端/使用js-xlsx插件导出多级表头excel/</id>
+    <published>2020-02-27T02:00:00.000Z</published>
+    <updated>2022-01-30T13:59:58.214Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;最近项目里有这么一个需求，把一个多级表头的table导出为excel格式。然后在网上找到一篇文章：&lt;a href=&quot;https://www.jianshu.com/p/9a465d7d1448&quot; target=&quot;_blank&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="技术分享" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/"/>
+    
+    
+      <category term="教程" scheme="http://yoursite.com/tags/%E6%95%99%E7%A8%8B/"/>
+    
+      <category term="excel" scheme="http://yoursite.com/tags/excel/"/>
+    
+      <category term="多级表头" scheme="http://yoursite.com/tags/%E5%A4%9A%E7%BA%A7%E8%A1%A8%E5%A4%B4/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>vue项目watch内的函数重复触发问题</title>
+    <link href="http://yoursite.com/2020/02/20/%E5%89%8D%E7%AB%AF/vue%E9%A1%B9%E7%9B%AEwatch%E5%86%85%E7%9A%84%E5%87%BD%E6%95%B0%E9%87%8D%E5%A4%8D%E8%A7%A6%E5%8F%91%E9%97%AE%E9%A2%98/"/>
+    <id>http://yoursite.com/2020/02/20/前端/vue项目watch内的函数重复触发问题/</id>
+    <published>2020-02-20T06:30:00.000Z</published>
+    <updated>2022-01-30T13:59:58.213Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h4 id=&quot;问题描述：&quot;&gt;&lt;a href=&quot;#问题描述：&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="技术分享" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/"/>
+    
+    
+      <category term="vue" scheme="http://yoursite.com/tags/vue/"/>
+    
+      <category term="bug" scheme="http://yoursite.com/tags/bug/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用Travis-CI部署hexo博客到腾讯cos&amp;github-pages</title>
+    <link href="http://yoursite.com/2020/01/16/deploy-hexo-blog-with-travis-ci/"/>
+    <id>http://yoursite.com/2020/01/16/deploy-hexo-blog-with-travis-ci/</id>
+    <published>2020-01-16T12:25:30.000Z</published>
+    <updated>2022-01-30T13:59:58.208Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="技术分享" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/"/>
+    
+    
+      <category term="hexo" scheme="http://yoursite.com/tags/hexo/"/>
+    
+      <category term="教程" scheme="http://yoursite.com/tags/%E6%95%99%E7%A8%8B/"/>
+    
+      <category term="Travis-CI" scheme="http://yoursite.com/tags/Travis-CI/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用FLEX实现一种上下高度不固定的自适应布局</title>
+    <link href="http://yoursite.com/2019/12/22/%E5%89%8D%E7%AB%AF/%E4%BD%BF%E7%94%A8FLEX%E5%AE%9E%E7%8E%B0%E4%B8%80%E7%A7%8D%E4%B8%8A%E4%B8%8B%E9%AB%98%E5%BA%A6%E4%B8%8D%E5%9B%BA%E5%AE%9A%E7%9A%84%E8%87%AA%E9%80%82%E5%BA%94%E5%B8%83%E5%B1%80/"/>
+    <id>http://yoursite.com/2019/12/22/前端/使用FLEX实现一种上下高度不固定的自适应布局/</id>
+    <published>2019-12-22T02:05:00.000Z</published>
+    <updated>2022-01-30T13:59:58.214Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;此布局的需求是：头部高度不固定，由子元素撑高，中间内容高度不固定，自动填满父容器剩余高度，底部高度固定。&lt;br&gt;&lt;img
+        
+      
+    
+    </summary>
+    
+      <category term="技术分享" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/"/>
+    
+    
+      <category term="CSS" scheme="http://yoursite.com/tags/CSS/"/>
+    
+      <category term="FLEX布局" scheme="http://yoursite.com/tags/FLEX%E5%B8%83%E5%B1%80/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用nginx和LiveReload搭建简单的热更新web开发环境</title>
+    <link href="http://yoursite.com/2019/11/21/%E5%89%8D%E7%AB%AF/%E7%83%AD%E6%9B%B4%E6%96%B0web%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/"/>
+    <id>http://yoursite.com/2019/11/21/前端/热更新web开发环境/</id>
+    <published>2019-11-21T12:39:00.000Z</published>
+    <updated>2022-01-30T13:59:58.215Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;如今web前端开发已经进入工程化、模块化的时代，各种框架、工具层出不穷。在工程化开发中，热更新已经由webpack、gulp等工具替我们实现了，不过有时候我们要调试一些比较简单的东西，比如测试一个css效果或js插件，使用这些工具的话却又显得有些笨重（要安装一堆npm插件）
+        
+      
+    
+    </summary>
+    
+      <category term="技术分享" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/"/>
+    
+    
+      <category term="教程" scheme="http://yoursite.com/tags/%E6%95%99%E7%A8%8B/"/>
+    
+      <category term="nginx" scheme="http://yoursite.com/tags/nginx/"/>
+    
+      <category term="LiveReload" scheme="http://yoursite.com/tags/LiveReload/"/>
+    
+      <category term="热更新" scheme="http://yoursite.com/tags/%E7%83%AD%E6%9B%B4%E6%96%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>2019国庆骑游记</title>
+    <link href="http://yoursite.com/2019/10/08/2019%E5%9B%BD%E5%BA%86%E9%AA%91%E6%B8%B8%E8%AE%B0/"/>
+    <id>http://yoursite.com/2019/10/08/2019国庆骑游记/</id>
+    <published>2019-10-08T14:30:00.000Z</published>
+    <updated>2022-01-30T13:59:58.207Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;9月份偶然看到一个骑行路书，路线为上海-千岛湖-黄山-皖南318，心里就被种草了，准备国庆假期骑一下这个路线。&lt;/p&gt;
+&lt;p&gt;&lt;img
+        
+      
+    
+    </summary>
+    
+      <category term="生活记录" scheme="http://yoursite.com/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/"/>
+    
+    
+      <category term="骑行" scheme="http://yoursite.com/tags/%E9%AA%91%E8%A1%8C/"/>
+    
+      <category term="游记" scheme="http://yoursite.com/tags/%E6%B8%B8%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>个人常用软件推荐</title>
+    <link href="http://yoursite.com/2019/08/28/%E4%B8%AA%E4%BA%BA%E5%B8%B8%E7%94%A8%E8%BD%AF%E4%BB%B6%E6%8E%A8%E8%8D%90/"/>
+    <id>http://yoursite.com/2019/08/28/个人常用软件推荐/</id>
+    <published>2019-08-28T09:45:30.000Z</published>
+    <updated>2022-01-30T13:59:58.210Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;h3 id=&quot;windows企业长期服务版&quot;&gt;&lt;a href=&quot;#windows企业长期服务版&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="技术分享" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF%E5%88%86%E4%BA%AB/"/>
+    
+    
+      <category term="软件" scheme="http://yoursite.com/tags/%E8%BD%AF%E4%BB%B6/"/>
+    
+      <category term="windows" scheme="http://yoursite.com/tags/windows/"/>
+    
+      <category term="Android" scheme="http://yoursite.com/tags/Android/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>青海湖骑行记</title>
+    <link href="http://yoursite.com/2019/08/22/%E9%9D%92%E6%B5%B7%E6%B9%96%E9%AA%91%E8%A1%8C%E8%AE%B0/"/>
+    <id>http://yoursite.com/2019/08/22/青海湖骑行记/</id>
+    <published>2019-08-22T02:30:00.000Z</published>
+    <updated>2022-01-30T13:59:58.215Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;青海湖，也就是青色的海，是由蒙语“库库淖尔”和藏语“错温布”意译而来，是中国最大的湖泊，也是著名的内陆咸水湖。&lt;/p&gt;
+&lt;p&gt;青海湖，湖面海拔3196米，位于青海湖盆地内，三面环山；其中，北面、东南面、南面分别环绕祁连山脉、日月山脉、南山山脉。不仅有丰富的高原风景，又集草原
+        
+      
+    
+    </summary>
+    
+      <category term="生活记录" scheme="http://yoursite.com/categories/%E7%94%9F%E6%B4%BB%E8%AE%B0%E5%BD%95/"/>
+    
+    
+      <category term="骑行" scheme="http://yoursite.com/tags/%E9%AA%91%E8%A1%8C/"/>
+    
+      <category term="游记" scheme="http://yoursite.com/tags/%E6%B8%B8%E8%AE%B0/"/>
+    
+  </entry>
+  
+</feed>

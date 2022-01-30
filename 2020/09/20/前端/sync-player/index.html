@@ -1,0 +1,1162 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="keywords" content="sync-player：使用websocket实现异地同步看视频, 星空无限 前端 技术笔记 个人随笔">
+    <meta name="description" content="前段时间我有这样一个需求，想和一个异地的人一起看电影，先后在网上找了一些方案，不过那几个方案都有一些缺点
+
+coplay 一个浏览器插件，只能播放各大视频网站的视频，视频资源有限，我想要看的视频没有，比如一些经典电影和美剧之类
+
+微光APP">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>sync-player：使用websocket实现异地同步看视频 | 星空无限</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="stylesheet" type="text/css" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.staticfile.org/materialize/1.0.0-rc.2/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.staticfile.org/aos/2.3.4/aos.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.staticfile.org/animate.css/3.7.2/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.staticfile.org/lightgallery/1.6.11/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    <style type="text/css">
+        
+        code[class*="language-"], pre[class*="language-"] {
+            white-space: pre !important;
+        }
+        
+    </style>
+    <script>
+      var _hmt = _hmt || [];
+      (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?12d2769d561eaae20753618457e6d18e";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+      })();
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-156445105-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-156445105-1');
+    </script>
+
+    <script src="https://cdn.staticfile.org/jquery/2.2.0/jquery.min.js"></script>
+    <script src></script>
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+
+<body>
+
+<header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="javascript:;" class="site-title waves-effect waves-light">
+                    
+                    <img src="/medias/star.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">星空无限</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fa fa-navicon"></i></a>
+<ul class="right">
+    
+    <li class="hide-on-med-and-down">
+        <a href="/" class="nav-link waves-effect waves-light">
+            
+            <i class="fa fa-home"></i>
+            
+            <span>首页</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/categories/" class="nav-link waves-effect waves-light">
+            
+            <i class="fa fa-bookmark"></i>
+            
+            <span>分类</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/archives/" class="nav-link waves-effect waves-light">
+            
+            <i class="fa fa-archive"></i>
+            
+            <span>归档</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/galleries/" class="nav-link waves-effect waves-light">
+            
+            <i class="fa fa-photo"></i>
+            
+            <span>相册</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/about/" class="nav-link waves-effect waves-light">
+            
+            <i class="fa fa-user-circle-o"></i>
+            
+            <span>关于</span>
+        </a>
+    </li>
+    
+    <li class="hide-on-med-and-down">
+        <a href="/friends/" class="nav-link waves-effect waves-light">
+            
+            <i class="fa fa-address-book"></i>
+            
+            <span>友情链接</span>
+        </a>
+    </li>
+    
+    <li>
+        <a href="#searchModal" class="modal-trigger nav-link waves-effect waves-light">
+            <i id="searchIcon" class="fa fa-search" title="搜索"></i>
+        </a>
+    </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/star.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">星空无限</div>
+        <div class="logo-desc">
+            
+            I will keep coding , keep riding
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li>
+            <a href="/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-home"></i>
+                
+                首页
+            </a>
+        </li>
+        
+        <li>
+            <a href="/categories/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-bookmark"></i>
+                
+                分类
+            </a>
+        </li>
+        
+        <li>
+            <a href="/archives/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-archive"></i>
+                
+                归档
+            </a>
+        </li>
+        
+        <li>
+            <a href="/galleries/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-photo"></i>
+                
+                相册
+            </a>
+        </li>
+        
+        <li>
+            <a href="/about/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-user-circle-o"></i>
+                
+                关于
+            </a>
+        </li>
+        
+        <li>
+            <a href="/friends/" class="waves-effect waves-light">
+                
+                <i class="fa fa-fw fa-address-book"></i>
+                
+                友情链接
+            </a>
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/liyang5945/" class="waves-effect waves-light" target="_blank">
+                <i class="fa fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/liyang5945/" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://s1.ax1x.com/2020/09/19/wInoT0.png')">
+    <div class="container">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <div class="description center-align post-title">
+                        sync-player：使用websocket实现异地同步看视频
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 20px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/websocket/" target="_blank">
+                                <span class="chip bg-color">websocket</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fa fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/技术分享/" class="post-category" target="_blank">
+                                技术分享
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                <div class="post-date info-break-policy">
+                    <i class="fa fa-calendar-minus-o fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-09-20
+                </div>
+
+                
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-file-word-o fa-fw"></i>文章字数:&nbsp;&nbsp;
+                        2k
+                    </div>
+                    
+
+                    
+                    <div class="info-break-policy">
+                        <i class="fa fa-clock-o fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                        7 分
+                    </div>
+                    
+                
+				
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p>前段时间我有这样一个需求，想和一个异地的人一起看电影，先后在网上找了一些方案，不过那几个方案都有一些缺点</p>
+<ul>
+<li><p><strong>coplay</strong> 一个浏览器插件，只能播放各大视频网站的视频，视频资源有限，我想要看的视频没有，比如一些经典电影和美剧之类</p>
+</li>
+<li><p><strong>微光APP</strong> 还是上面的问题，而且只有手机端</p>
+</li>
+<li><p><strong>向日葵等远程桌面</strong> 受限于网络问题，卡顿很严重，体验不好</p>
+</li>
+</ul>
+<p>除了这几个方案之外我也尝试了直播的方案：</p>
+<ul>
+<li><p><strong>通过B站等直播平台进行直播，</strong> 缺点：有几十秒的延迟，而且不能保证两端播放进度同步，总会差个几秒，而且直播对上传带宽要求较高。</p>
+</li>
+<li><p><strong>自建直播平台，</strong>，我首先使用了腾讯云上的<code>云直播</code>解决方案，后来我又在自己的云服务器上使用<code>nginx+rtmp</code>搭建了直播服务，两个方案延迟差不多，大概在5-10秒，但还是无法解决两端视频不同步问题。</p>
+</li>
+</ul>
+<p>作为一个切图仔，对用户体验还是有一定追求的，我是一个下载党，看电影必须下载到本地看，基本不看视频网站上的玩意</p>
+<p>那么有没有能实现同步播放本地文件的方案呢，答案是肯定的，经过我的一些摸索和研究，我实现了本地文件的同步播放，同时支持PC和手机端，而且还支持外挂字幕等高级功能，如何实现请往下看。</p>
+<h1 id="功能介绍-amp-特性："><a href="#功能介绍-amp-特性：" class="headerlink" title="功能介绍&amp;特性："></a>功能介绍&amp;特性：</h1><p>一个可以同步看视频的播放器，可用于异地同步观影、观剧，支持多人同时观看。<br>本项目有两个版本，web版运行在浏览器上，可跨平台，不限操作系统、设备，功能简单适用于要求不高的用户。还有基于SPlayer(射手影音)DIY的客户端版本(windows、MAC)，播放4K高清文件、外挂字幕，统统没问题。</p>
+<h1 id="演示demo"><a href="#演示demo" class="headerlink" title="演示demo:"></a>演示demo:</h1><p>web版同步效果</p>
+<p><img src="https://s1.ax1x.com/2020/09/19/wI60je.gif" alt="wI60je.gif"></p>
+<p>客户端与web版同步效果</p>
+<p><img src="https://s1.ax1x.com/2020/09/20/wofbYd.gif" alt="wofbYd.gif"></p>
+<h1 id="原理："><a href="#原理：" class="headerlink" title="原理："></a>原理：</h1><p>基于websocket实现，与一些用websocket实现的聊天室类似，只不过这个聊天室里的消息换成了播放暂停的动作和时间信息，客户端收到消息后执行相应的动作:播放、暂停、快进，以达到同时播放的效果。</p>
+<h1 id="项目所用到的"><a href="#项目所用到的" class="headerlink" title="项目所用到的"></a>项目所用到的</h1><ul>
+<li>node.js </li>
+<li>socket.io</li>
+<li>HTML5 video API </li>
+<li>vue.js</li>
+</ul>
+<h1 id="如何使用："><a href="#如何使用：" class="headerlink" title="如何使用："></a>如何使用：</h1><p>本项目的核心是websocket，所以至少需要一台服务器提供websocket服务，websocket服务可以自己部署，可以使用第三方平台GoEasy提供的websocket服务(可免费使用两个月)。</p>
+<p>1、自己部署：websocket服务器可以是一台具有公网IP的云服务器，也可以是一台具有公网IP的普通PC，没有公网IP也可以。你也可以使用zerotier或其他VPN工具将两台设备组成一个大局域网，让它们能互相通信。websocket服务器操作系统不限，只要有node.js环境。</p>
+<p>websocket服务端部署方法：安装node.js环境，将server目录移动到服务器上，进入server目录，执行以下命令</p>
+<p>安装项目依赖包</p>
+<pre class="line-numbers language-bash"><code class="language-bash">
+<span class="token comment" spellcheck="true"># 安装项目依赖包</span>
+
+<span class="token function">npm</span> <span class="token function">install</span> 
+
+<span class="token comment" spellcheck="true"># 启动websocket服务</span>
+
+node index.js
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>2、使用GoEasy的websocket服务</p>
+<p>注册GoEasy开发者账号并创建一个应用，获得appkey，复制到本项目相应位置即可。</p>
+<p>GoEasy官网：<a href="https://www.goeasy.io" target="_blank" rel="noopener">https://www.goeasy.io</a></p>
+<p>无论是使用哪种websocket服务都可以，本项目写了两套代码，只需将不用的那套注释掉即可(默认GoEasy)。</p>
+<p>除了websocket服务器之外，还需要两个http服务端，一个是web服务端(提供html、css、js等文件的访问)，一个是视频服务端(提供视频文件访问)。</p>
+<p>3、使用leancloud-realtime</p>
+<p>leancloud-realtime是啥玩意？简单来说就是一个即时通讯SDK，这里不多介绍，请去<a href="https://leancloud.cn/docs/realtime_v2.html" target="_blank" rel="noopener">leancloud官网</a> 了解。这个服务也是使用websocket传输数据的，所以本项目也能用，我们只要把传输的文本消息换成一个JSON字符串即可。而且leancloud为开发者提供了一些免费额度，消息数量不限，只有120次/分钟的限制，个人使用的话是完全够用的，强烈推荐这个。</p>
+<p>首先注册leancloud开发者账号，进入控制台，获得appId、appKey等信息，复制到对应位置(client/script/main.js)，第一次执行(使用浏览器打开页面)这段代码时会生成一个对话(conversation)，在leancloud控制台&gt;即时通讯&gt;对话下面，复制一个conversation id到对应位置</p>
+<p><img src="https://s4.ax1x.com/2022/01/05/TvG1Qs.png" alt="TvG1Qs.png"></p>
+<p><img src="https://s4.ax1x.com/2022/01/05/TvGQzj.png" alt="TvGQzj.png"></p>
+<p>你可以将web服务部端署到以下位置：</p>
+<ul>
+<li>具有公网IP的服务器</li>
+<li>github-pages或国内的码云提供的静态web服务</li>
+<li>localhost(本地服务器)，同一个局域网内的设备访问该服务器内网IP</li>
+</ul>
+<p>视频文件只需一个视频地址就行，也有以下几种选择：</p>
+<ul>
+<li>具有公网IP的服务器</li>
+<li>localhost(本地服务器)，同一个局域网内的设备访问该服务器内网IP</li>
+<li>第三方视频地址</li>
+</ul>
+<p><img src="https://s1.ax1x.com/2020/09/17/wfntdU.png" alt="wfntdU.png"></p>
+<p>使用场景1：云服务器带宽足够大(至少要大于播放视频的码率)，云服务器既可以作为websocket服务端，也可以作为http服务端。上图中所有设备都访问云服务器的ip或域名。</p>
+<p>使用场景2：云服务器的带宽很小，这时候它只能作为websocket服务端，这时可以用上图中的PC1和PC2作为http服务端，PC1和PHONE1在一个内网访问PC1的内网IP，PC2和PHONE2在一个内网访问PC2的内网IP，PC3可作为自己的http服务端，PHONE3若是有提供视频文件的服务端，也可以使用。</p>
+<p><img src="https://s1.ax1x.com/2020/09/17/wfnYZT.png" alt="wfnYZT.png"></p>
+<p>使用场景3：需要使用zerotier或其他VPN工具将异地设备组成一个大局域网，其中任意一台PC均可作为websocket服务端和http服务端(需要上传带宽足够大)。上图中各设备都访问那台PC的内网ip即可。</p>
+<p>最简单的使用方法，下载nginx开启一个本地服务器，下载本项目client文件夹放到到nginx根目录里，视频文件也放到里面。注册leancloud开发者账号并创建一个应用，获得appId、appKey等信息，并填入到代码(<code>script/main.js</code>)相应位置。然后浏览器打开 <code>192.168.3.58/client/</code>，填入你的视频地址<code>192.168.3.58/movie/xxx.mp4</code>或网络视频地址，对方也这样操作一番，即可实现同步播放视频。</p>
+<p>web版本的功能比较简单，而且受限于网络问题，快进之类的操作需要缓冲一段时间。如果你不满足web版功能，对用户体验有更高的要求，如支持更多文件格式、播放高清本地视频文件、外挂字幕等，我也找到了另一种方式来满足你的需求。</p>
+<p>那就是DIY一个开源的播放器的源码：SPlayer(射手影音)。</p>
+<p>射手影音官网：<a href="https://splayer.org" target="_blank" rel="noopener">https://splayer.org</a></p>
+<p>源码地址：<a href="https://github.com/chiflix/splayerx" target="_blank" rel="noopener">https://github.com/chiflix/splayerx</a></p>
+<p>在以<strong>electron + 播放器</strong>为关键字一番搜索之后，我找到了这个基于electron实现的开源播放器，并下载了源码来研究。</p>
+<p>经过一番研究之后，我找到了控制视频播放、暂停、快进的代码位置，并将控制同步的代码移植了进去，从而也实现了同步功能，并且与web版兼容。</p>
+<p>具体方法请看：<a href="https://github.com/liyang5945/sync-player/blob/master/how-to-modify-splayer.md" target="_blank" rel="noopener">修改教程</a></p>
+<p>本项目部分图标样式来源于此项目: <a href="https://github.com/Justineo/coplay" target="_blank" rel="noopener">coplay</a> </p>
+<h1 id="更新记录"><a href="#更新记录" class="headerlink" title="更新记录"></a>更新记录</h1><p>2022-01-05</p>
+<ul>
+<li>添加leancloud即时通讯方案、完善修改射手影音的教程。</li>
+</ul>
+<p>2022-01-18</p>
+<ul>
+<li>添加m3u8视频支持。</li>
+</ul>
+<p>本项目github地址：<a href="https://github.com/liyang5945/sync-player" target="_blank" rel="noopener">点击前往</a> ，欢迎⭐⭐⭐STAR⭐⭐⭐</p>
+
+            </div>
+            <hr/>
+
+            
+
+            <link rel="stylesheet" type="text/css" href="https://cdn.staticfile.org/social-share.js/1.0.16/css/share.min.css">
+
+<div id="article-share">
+    
+    <div class="social-share" data-disabled="linkedin,facebook,twitter,google+,tencent,diandian" data-wechat-qrcode-helper="<p>微信里点“发现”->“扫一扫”二维码便可查看分享。</p>"></div>
+    
+</div>
+
+<!--<script src="/libs/share/js/social-share.min.js"></script>-->
+<script src="https://cdn.staticfile.org/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+
+            
+
+
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+        <style>
+    .valine-card {
+        margin: 1.5rem auto;
+    }
+
+    .valine-card .card-content {
+        padding: 20px 20px 5px 20px;
+    }
+
+    #vcomments input[type=text],
+    #vcomments input[type=email],
+    #vcomments input[type=url],
+    #vcomments textarea {
+        box-sizing: border-box;
+    }
+
+    #vcomments p {
+        margin: 2px 2px 10px;
+        font-size: 1.05rem;
+        line-height: 1.78rem;
+    }
+
+    #vcomments blockquote p {
+        text-indent: 0.2rem;
+    }
+
+    #vcomments a {
+        padding: 0 2px;
+        color: #42b983;
+        font-weight: 500;
+        text-decoration: underline;
+    }
+
+    #vcomments img {
+        max-width: 100%;
+        height: auto;
+        cursor: pointer;
+    }
+
+    #vcomments ol li {
+        list-style-type: decimal;
+    }
+
+    #vcomments ol,
+    ul {
+        display: block;
+        padding-left: 2em;
+        word-spacing: 0.05rem;
+    }
+
+    #vcomments ul li,
+    ol li {
+        display: list-item;
+        line-height: 1.8rem;
+        font-size: 1rem;
+    }
+
+    #vcomments ul li {
+        list-style-type: disc;
+    }
+
+    #vcomments ul ul li {
+        list-style-type: circle;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    #vcomments table, th, td {
+        border: 0;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments h1 {
+        font-size: 1.85rem;
+        font-weight: bold;
+        line-height: 2.2rem;
+    }
+
+    #vcomments h2 {
+        font-size: 1.65rem;
+        font-weight: bold;
+        line-height: 1.9rem;
+    }
+
+    #vcomments h3 {
+        font-size: 1.45rem;
+        font-weight: bold;
+        line-height: 1.7rem;
+    }
+
+    #vcomments h4 {
+        font-size: 1.25rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    #vcomments h5 {
+        font-size: 1.1rem;
+        font-weight: bold;
+        line-height: 1.4rem;
+    }
+
+    #vcomments h6 {
+        font-size: 1rem;
+        line-height: 1.3rem;
+    }
+
+    #vcomments p {
+        font-size: 1rem;
+        line-height: 1.5rem;
+    }
+
+    #vcomments hr {
+        margin: 12px 0;
+        border: 0;
+        border-top: 1px solid #ccc;
+    }
+
+    #vcomments blockquote {
+        margin: 15px 0;
+        border-left: 5px solid #42b983;
+        padding: 1rem 0.8rem 0.3rem 0.8rem;
+        color: #666;
+        background-color: rgba(66, 185, 131, .1);
+    }
+
+    #vcomments pre {
+        font-family: monospace, monospace;
+        padding: 1.2em;
+        margin: .5em 0;
+        background: #272822;
+        overflow: auto;
+        border-radius: 0.3em;
+        tab-size: 4;
+    }
+
+    #vcomments code {
+        font-family: monospace, monospace;
+        padding: 1px 3px;
+        font-size: 0.92rem;
+        color: #e96900;
+        background-color: #f8f8f8;
+        border-radius: 2px;
+    }
+
+    #vcomments pre code {
+        font-family: monospace, monospace;
+        padding: 0;
+        color: #e8eaf6;
+        background-color: #272822;
+    }
+
+    #vcomments pre[class*="language-"] {
+        padding: 1.2em;
+        margin: .5em 0;
+    }
+
+    #vcomments code[class*="language-"],
+    pre[class*="language-"] {
+        color: #e8eaf6;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+
+    #vcomments b,
+    strong {
+        font-weight: bold;
+    }
+
+    #vcomments dfn {
+        font-style: italic;
+    }
+
+    #vcomments small {
+        font-size: 85%;
+    }
+
+    #vcomments cite {
+        font-style: normal;
+    }
+
+    #vcomments mark {
+        background-color: #fcf8e3;
+        padding: .2em;
+    }
+
+    #vcomments table, th, td {
+        padding: 12px 13px;
+        border: 1px solid #dfe2e5;
+    }
+
+    table tr:nth-child(2n), thead {
+        background-color: #fafafa;
+    }
+
+    #vcomments table th {
+        background-color: #f2f2f2;
+        min-width: 80px;
+    }
+
+    #vcomments table td {
+        min-width: 80px;
+    }
+
+    #vcomments [type="checkbox"]:not(:checked), [type="checkbox"]:checked {
+        position: inherit;
+        margin-left: -1.3rem;
+        margin-right: 0.4rem;
+        margin-top: -1px;
+        vertical-align: middle;
+        left: unset;
+        visibility: visible;
+    }
+    .v .vwrap .vheader .vinput:focus {
+        border-bottom:1px dashed #eb5055;!important;
+        box-shadow: none;
+    }
+</style>
+
+<div class="card valine-card" data-aos="fade-up">
+    <div id="vcomments" class="card-content"></div>
+</div>
+
+<script src="https://cdn.staticfile.org/valine/1.3.9/Valine.min.js"></script>
+
+<script>
+    new Valine({
+        el: '#vcomments',
+        appId: 'gE4XFMwC1Kq2wzKJNoHlmaYS-gzGzoHsz',
+        appKey: 'rrtA6uiEs1IdVW4qRLzEmTfB',
+        notify: 'false' === 'true',
+        verify: 'false' === 'true',
+        visitor: 'true' === 'true',
+        avatar: 'mm',
+        pageSize: '10',
+        lang: 'zh-cn',
+        placeholder: '欢迎留言\n评论功能以邮件作为通知方式\n如有必要请填写正确邮箱'
+    });
+</script>
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fa fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2020/10/09/ride-bike-go-hometown/">
+                    <div class="card-image">
+                        
+                        <img src="https://s1.ax1x.com/2020/10/09/0rcShD.md.jpg" class="responsive-img" alt="十一长途骑行回家的尝试">
+                        
+                        <span class="card-title">十一长途骑行回家的尝试</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            长途骑行回家的想法，我很早之前就有了，直到九月十几号我才知道今年国庆竟然有8天假。于是我就退掉了回家的车票，准备尝试一下骑行回家。我老家河南周口市，距离上海700km，计划的是四天骑完，不过因为天气原因只骑了两天，后半程乘的高铁。
+骑的还是
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="fa fa-clock-o fa-fw icon-date"></i>2020-10-09
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/生活记录/" class="post-category" target="_blank">
+                                    生活记录
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/骑行/" target="_blank">
+                        <span class="chip bg-color">骑行</span>
+                    </a>
+                    
+                    <a href="/tags/游记/" target="_blank">
+                        <span class="chip bg-color">游记</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fa fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/08/15/前端/draggable-fixed-header-table/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="https://images.liyangzone.com/medias/featureimages/12156466194_0b3617b44f_k.jpg" class="responsive-img" alt="使用粘性定位(position:sticky)实现固定表头、固定列的表格组件(Vue、React)">
+                        
+                        <span class="card-title">使用粘性定位(position:sticky)实现固定表头、固定列的表格组件(Vue、React)</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            最近重构的项目中有这样一个页面，一个固定表头和列的表格，表格列数较多，大概有60多列，200多条数据，而且表格需要实现拖拽滚动功能。原页面的表格是用的一个比较老旧的表格插件实现，拖拽滚动是用iScroll.js实现的，性能很差，即使每页只有
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="fa fa-clock-o fa-fw icon-date"></i>2020-08-15
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fa fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/技术分享/" class="post-category" target="_blank">
+                                    技术分享
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/vue/" target="_blank">
+                        <span class="chip bg-color">vue</span>
+                    </a>
+                    
+                    <a href="/tags/react/" target="_blank">
+                        <span class="chip bg-color">react</span>
+                    </a>
+                    
+                    <a href="/tags/CSS/" target="_blank">
+                        <span class="chip bg-color">CSS</span>
+                    </a>
+                    
+                    <a href="/tags/表格/" target="_blank">
+                        <span class="chip bg-color">表格</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+</div>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="fa fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fa fa-list"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            // headingsOffset: -205,
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).slideUp(500);
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).slideDown(500);
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+    
+
+</main>
+
+
+
+<footer class="page-footer foot-bg-color">
+    <div class="container row center-align">
+        <div class="col s12 m8 l8 copy-right">
+            本站由&copy;<a href="javascript:;" target="_blank"> 星空无限 </a>基于
+            <a href="https://hexo.io/" target="_blank">Hexo</a> 的
+            <a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">hexo-theme-matery</a>主题搭建.
+
+            
+                &nbsp;<i class="fa fa-area-chart"></i>&nbsp;站点总字数:&nbsp;
+                <span class="white-color">39.6k</span>
+            
+
+            
+			
+
+            <div>
+                <a href="http://beian.miit.gov.cn">豫ICP备19028870号</a>
+            </div>
+            
+                <div style="display: none;">
+                    <script src="//s96.cnzz.com/z_stat.php?id=1277838830&web_id=1277838830"></script>
+                </div>
+            
+
+        </div>
+        <div class="col s12 m4 l4 social-link ">
+    <a href="https://github.com/liyang5945" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fa fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:liyang9211@gmail.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fa fa-envelope-open"></i>
+    </a>
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=594443507" class="tooltipped" data-tooltip="QQ联系我: 594443507" data-position="top" data-delay="50">
+        <i class="fa fa-qq"></i>
+    </a>
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fa fa-rss"></i>
+    </a>
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+<!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+<script src="/js/search.js"></script>
+
+<!--<script src="/js/search.js"></script>-->
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+
+<!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fa fa-angle-up"></i>
+    </a>
+</div>
+
+
+<script src="https://cdn.staticfile.org/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+<script src="https://cdn.staticfile.org/masonry/4.0.0/masonry.pkgd.js"></script>
+<script src="https://cdn.staticfile.org/aos/2.3.4/aos.js"></script>
+<script src="https://cdn.staticfile.org/scrollprogress/3.0.2/scrollProgress.min.js"></script>
+<script src="https://cdn.staticfile.org/lightgallery/1.6.12/js/lightgallery-all.min.js"></script>
+<script src="/js/matery.js"></script>
+<!--<script src="/js/matery.js"></script>-->
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+
+    <script src="/libs/others/clicklove.js"></script>
+
+
+
+</body>
+</html>
